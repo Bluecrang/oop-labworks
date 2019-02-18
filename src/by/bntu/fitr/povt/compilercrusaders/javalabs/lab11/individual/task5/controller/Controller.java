@@ -21,7 +21,7 @@ public class Controller {
 
 	private static final int MAX_RANDOM_NUM = 100;
 	private static final int MIN_RANDOM_NUM = -100;
-	private static final int MAX_RANDOM_ARRAY_LENGTH_MINUS_ONE = 9;
+	private static final int MAX_RANDOM_ARRAY_LENGTH_MINUS_ONE = 19;
 	
 	public static void main(String[] args) {
 		
@@ -37,8 +37,8 @@ public class Controller {
 		start: while (active) {
 			
 			printer.println("Choose command:");
-			printer.println("1 - run using random input");
-			printer.println("2 - run using console input");
+			printer.println("1 - use random input");
+			printer.println("2 - use console input");
 			printer.println("3 - EXIT");
 			int inputChoice;
 			try {
@@ -101,8 +101,8 @@ public class Controller {
 			}
 			printer.println("\n");
 			try {
-				double maxAbsBetweenPositive = logic.maxAbsBetweenPositiveElements(vector, 1, 2);
-				printer.println("max absolute element between first two positive numbers: " + maxAbsBetweenPositive);
+				double maxAbs = logic.maxAbs(vector);
+				printer.println("max absolute element: " + maxAbs);
 				double sumBetweenPositive = logic.sumBetweenPositiveElements(vector, 1, 2);
 				printer.println("sum of elements between first two positive numbers: " + sumBetweenPositive);
 			} catch (VectorException e) {

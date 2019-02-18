@@ -1,6 +1,6 @@
 /* logic for individual task 5
  * laboratory work ¹11 - Java One-dimensional Arrays
- * version: 1.0
+ * version: 1.1
  * Authors: Gilevskiy Denis Alexandrovich
  * Brigade name: Compiler Crusaders
  * Group Number: 10701117
@@ -14,28 +14,18 @@ import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.individual.task5.excep
 public class VectorLogic {
 	
 
-	public double maxAbsBetweenPositiveElements(double[] vector, int number1, int number2) throws VectorException{
+	public double maxAbs(double[] vector){
 		
-		if (vector == null || number1 <= 0 || number2 <= 0 || number1 >= number2) {
+		if (vector == null || vector.length < 1) {
 			throw new IllegalArgumentException();
 		}
 		
-		int firstPositiveIndex = findPositiveIndex(vector, number1);
+		double maxAbs = vector[0];
 		
-		int secondPositiveIndex = findPositiveIndex(vector, number2);
-		
-		if (Math.abs(firstPositiveIndex - secondPositiveIndex) == 1) {
-			throw new VectorException("There are no elements between positive elements");
-		}
-		
-		double maxAbs = Math.abs(vector[firstPositiveIndex + 1]);
-		
-		for (int i = firstPositiveIndex + 2; i < secondPositiveIndex; i++) {
+		for (int i = 1; i < vector.length; i++) {
 			
-			double currentAbs = Math.abs(vector[i]);
-			
-			if (maxAbs < currentAbs) {
-				maxAbs = currentAbs;
+			if (Math.abs(maxAbs) < Math.abs(vector[i])) {
+				maxAbs = vector[i];
 			}
 		}
 		
@@ -44,7 +34,7 @@ public class VectorLogic {
 	
 	public double sumBetweenPositiveElements(double[] vector, int number1, int number2) throws VectorException{
 		
-		if (vector == null || number1 <= 0 || number2 <= 0 || number1 >= number2) {
+		if (vector == null || number1 <= 0 || number2 <= 0 || number1 >= number2 || vector.length < 1) {
 			throw new IllegalArgumentException();
 		}
 		
@@ -53,7 +43,7 @@ public class VectorLogic {
 		int secondPositiveIndex = findPositiveIndex(vector, number2);
 		
 		if (Math.abs(firstPositiveIndex - secondPositiveIndex) == 1) {
-			throw new VectorException("There are no elements between positive elements");
+			throw new VectorException("There are no elements between chosen positive elements");
 		}
 		
 		double sum = 0;
@@ -66,7 +56,7 @@ public class VectorLogic {
 	
 	public int findPositiveIndex(double[] vector, int number) throws VectorException {
 		
-		if (vector == null || number < 0) {
+		if (vector == null || number < 0 || vector.length < 1) {
 			throw new IllegalArgumentException();
 		}
 		
