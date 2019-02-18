@@ -16,14 +16,13 @@ import java.util.List;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Book;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Library;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.LibraryAccount;
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.exception.NullArgumentException;
 
 public class LibraryManager {
 	
 	public void lendBook(Library library, LibraryAccount account, String bookTitle, Calendar dueDate) {
 		
 		if (library == null || account == null || bookTitle == null || dueDate == null) {
-			throw new NullArgumentException();
+			throw new IllegalArgumentException();
 		}
 		
 		if (isRegistered(library, account)) {
@@ -43,7 +42,7 @@ public class LibraryManager {
 	public Book findBookByTitle(List<Book> bookList, String title) {
 		
 		if (bookList == null || title == null) {
-			throw new NullArgumentException();
+			throw new IllegalArgumentException();
 		}
 		
 		for (Book book : bookList) {
@@ -57,7 +56,7 @@ public class LibraryManager {
 	public void returnBook(Library library, LibraryAccount account, String title) {
 		
 		if (library == null || account == null || title == null) {
-			throw new NullArgumentException();
+			throw new IllegalArgumentException();
 		}
 		
 		if (isRegistered(library, account)) {
@@ -79,7 +78,7 @@ public class LibraryManager {
 	public void registerAccount(Library library, LibraryAccount account) {
 		
 		if (library == null || account == null) {
-			throw new NullArgumentException();
+			throw new IllegalArgumentException();
 		}
 		
 		if (!isRegistered(library, account)) {
@@ -92,7 +91,7 @@ public class LibraryManager {
 	public void deregisterAccount(Library library, LibraryAccount account) {
 		
 		if (library == null || account == null) {
-			throw new NullArgumentException();
+			throw new IllegalArgumentException();
 		}
 		
 		if (isRegistered(library, account)) {
@@ -105,7 +104,7 @@ public class LibraryManager {
 	public boolean isRegistered(Library library, LibraryAccount account) {
 		
 		if (library == null || account == null) {
-			throw new NullArgumentException();
+			throw new IllegalArgumentException();
 		}
 		
 		List<LibraryAccount> accountList = library.getAccounts();
@@ -116,7 +115,7 @@ public class LibraryManager {
 	public List<Book> findLendedBooks(Library library) {
 		
 		if (library == null) {
-			throw new NullArgumentException();
+			throw new IllegalArgumentException();
 		}
 		
 		List<Book> lendedBooks = new ArrayList<>();
