@@ -1,3 +1,12 @@
+/* Book container
+ * laboratory work ¹11 - Java One-dimensional Arrays
+ * version: 1.0
+ * Author: Gilevskiy Denis Alexandrovich
+ * Brigade name: Compiler Crusaders
+ * Group Number: 10701117
+ * Development date: 18.02.2019
+ */
+
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.container;
 
 import java.util.Arrays;
