@@ -93,4 +93,19 @@ public class BookContainer {
 		}
 	}
 	
+	public boolean contains(Book book) {
+		
+		if (book == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		for (int i = 0; i < size(); i++) {
+			if (book == get(i)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 }
