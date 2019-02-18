@@ -1,10 +1,10 @@
-/* This class contains methods for console input
- * laboratory work ¹10 - Basics Object-Oriented Programming in Java. Abstraction. Object Initialzation
+/* Keyboard input
+ * laboratory work ¹11 - Java One-dimensional Arrays
  * version: 1.0
- * Full name: Gilevsky Denis Alexandrovich
+ * Authors: Gilevskiy Denis Alexandrovich
  * Brigade name: Compiler Crusaders
  * Group Number: 10701117
- * Development date: 20.12.2018
+ * Development date: 18.02.2019
  */
 
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.individual.task5.util;

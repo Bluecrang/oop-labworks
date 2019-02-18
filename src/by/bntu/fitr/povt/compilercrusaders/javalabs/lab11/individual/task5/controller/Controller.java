@@ -1,3 +1,12 @@
+/* Main class for lab11
+ * laboratory work ¹11 - Java One-dimensional Arrays
+ * version: 1.0
+ * Authors: Gilevskiy Denis Alexandrovich, Kitaiharodski Pavel
+ * Brigade name: Compiler Crusaders
+ * Group Number: 10701117
+ * Development date: 20.12.2018
+ */
+
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.individual.task5.controller;
 
 import java.util.InputMismatchException;

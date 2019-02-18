@@ -1,10 +1,10 @@
-/* Main class for lab11
+/* Controller for vector calculator
  * laboratory work ¹11 - Java One-dimensional Arrays
  * version: 1.0
- * Authors: Gilevskiy Denis Alexandrovich, Kitaiharodski Pavel
+ * Authors: Gilevskiy Denis Alexandrovich
  * Brigade name: Compiler Crusaders
  * Group Number: 10701117
- * Development date: 20.12.2018
+ * Development date: 18.02.2019
  */
 
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.controller;
