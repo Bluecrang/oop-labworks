@@ -1,3 +1,11 @@
+/* view for individual task 15
+ * laboratory work 11 - Java One-dimensional Arrays
+ * version: 1.0
+ * Authors: Kitaiharodski Pavel Sergeevich
+ * Brigade name: Compiler Crusaders
+ * Group Number: 10701117
+ * Development date: 19.02.2019
+ */
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.individual.task15.view;
 
 import java.util.Scanner;
@@ -5,11 +13,9 @@ import java.util.Scanner;
 public class View {
 	private Scanner scan = new Scanner(System.in);
 	
-	public void menu() {
-		System.out.println("Please, input 1 if you want to find number of zero elements.");
-		System.out.println("Please, input 2 if you want to find sum of elements after minimal element.");
-		System.out.println("Please, input 3 if you want to see the array.");
-		System.out.println("Please, input 4 if you want to exit.");
+	
+	public void showInfo(String a) {
+		System.out.println(a);
 	}
 	
 	public void showResult(String a, double b) {
@@ -32,33 +38,9 @@ public class View {
 		return res;
 	}
 	
-	public double[] getVector() {
-		System.out.println("1 - run using random input");
-		System.out.println("2 - run using console input");
-		
-		int a = getChoice(1, 2);
-		double[] array;
-		System.out.println("Please input number of elements");
-		int number = getInt();
-		if(number < 1) {
-			number = 1;
-		}
-		if(a == 2) {
-		array = new double[number];
-		for(int i = 0; i < number; i++) {
-			array[i] = getDouble();
-			}
-		}
-		else {
-			array = new double[number];
-			for(int i = 0; i < number; i++) {
-				array[i] = Math.random()*200 - 100;
-			}
-		}
-		return array;
-	}
 	
-	 private double getDouble() {
+	
+	public double getDouble() {
 		 System.out.print("Please, input: ");
 				while(!scan.hasNextDouble()) {
 					scan.next();
@@ -73,7 +55,7 @@ public class View {
 			 System.out.println(" " + array[i]);
 		 }
 	 }
-	 private int getInt() {
+	 public int getInt() {
 		 System.out.print("Please, input: ");
 			while(!scan.hasNextInt()) {
 				scan.next();
