@@ -9,8 +9,15 @@
 
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.view;
 
+import java.util.Calendar;
+
 public class Printer {
 	public void println(String message) {
 		System.out.println(message);
+	}
+
+	public void println(String message,Calendar dueDate) {
+		System.out.println(message + dueDate.getTime());
+		
 	}
 }
