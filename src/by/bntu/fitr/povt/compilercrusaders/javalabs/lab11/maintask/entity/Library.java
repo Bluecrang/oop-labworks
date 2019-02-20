@@ -1,5 +1,5 @@
 /* Library entity
- * laboratory work น11 - Java One-dimensional Arrays
+ * laboratory work ยน11 - Java One-dimensional Arrays
  * version: 1.0
  * Authors: Gilevskiy Denis Alexandrovich, Kitaiharodski Pavel
  * Brigade name: Compiler Crusaders
@@ -87,5 +87,13 @@ public class Library {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "ID: " + libraryId + 
+		"; NAME: " + name +
+		"; PHONE NUMBER:" + telephoneNumber +
+		"; ADDRESS: " + address;
 	}	
 }
