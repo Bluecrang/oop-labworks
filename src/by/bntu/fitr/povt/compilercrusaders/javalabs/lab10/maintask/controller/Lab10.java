@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Book;
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Library;
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.LibraryAccount;
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.logic.LibraryManager;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.entity.Book;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.entity.Library;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.entity.LibraryAccount;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.logic.LibraryManager;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.view.Printer;
 
-public class Lab11 {
+public class Lab10 {
 	
 	public static void main(String[] args) {
 		
