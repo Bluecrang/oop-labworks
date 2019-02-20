@@ -15,15 +15,15 @@ import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Book;
 
 public class BookContainer {
 	
-	private static final double GROW_MULTIPLIER;
-	private static final double SHRINK_DIVIDER;
+	public static final double SIZE_MULTIPLIER;
+	public static final double SIZE_DIVIDER;
 
 	private Book[] bookArray;
 	private int size;
 	
 	static {
-		GROW_MULTIPLIER = 1.5;
-		SHRINK_DIVIDER = 1.5;
+		SIZE_MULTIPLIER = 1.5;
+		SIZE_DIVIDER = 1.5;
 	}
 	
 	{
@@ -61,7 +61,7 @@ public class BookContainer {
 	public void add(Book book) {
 		
 		if (size >= bookArray.length) {
-			bookArray = Arrays.copyOf(bookArray, (int)(bookArray.length * GROW_MULTIPLIER));
+			bookArray = Arrays.copyOf(bookArray, (int)(bookArray.length * SIZE_MULTIPLIER));
 		} 
 		
 		bookArray[size] = book;
@@ -96,24 +96,31 @@ public class BookContainer {
 		bookArray[size - 1] = null; //removing reference which was not replaced
 		size--;
 		
-		if (bookArray.length > size * 2) { // if doubled container size less than array length
-			bookArray = Arrays.copyOf(bookArray, (int)(bookArray.length / SHRINK_DIVIDER));
+		if (bookArray.length > size * Math.pow(SIZE_MULTIPLIER, 2)) {
+			bookArray = Arrays.copyOf(bookArray, (int)(bookArray.length / SIZE_DIVIDER));
 		}
 	}
 	
 	public boolean contains(Book book) {
 		
-		if (book == null) {
-			throw new IllegalArgumentException("book can not be null");
-		}
-		
-		for (int i = 0; i < size(); i++) {
-			if (book == get(i)) {
+		for (int i = 0; i < size; i++) {
+			if (book == bookArray[i]) {
 				return true;
 			}
 		}
 		
 		return false;
+	}
+	
+	public String toString() {
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append('[');
+		for (int i = 0; i < size; i++) {
+			sb.append(bookArray[i]);
+		}
+		sb.append(']');
+		return sb.toString();
 	}
 	
 }
