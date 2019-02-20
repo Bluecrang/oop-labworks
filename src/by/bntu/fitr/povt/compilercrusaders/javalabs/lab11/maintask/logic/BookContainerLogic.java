@@ -14,7 +14,25 @@ import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Book;
 
 public class BookContainerLogic {
 	
-	public BookContainer findByAuthor(BookContainer container, String author) {
+	public Book findById(BookContainer container, long id) {
+		
+		if (container == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		Book result = null;
+		for (int i = 0; i < container.size(); i++) {
+			Book currentBook = container.get(i);
+			if (currentBook.getBookId() == id) {
+				result = currentBook;
+				break;
+			}
+		}
+		
+		return result;
+	}
+	
+	public BookContainer findAllByAuthor(BookContainer container, String author) {
 		
 		if (container == null || author == null) {
 			throw new IllegalArgumentException();
@@ -24,7 +42,7 @@ public class BookContainerLogic {
 		
 		for (int i = 0; i < container.size(); i++) {
 			Book currentBook = container.get(i);
-			if (currentBook.getAuthor() == author) {
+			if (currentBook.getAuthor().equals(author)) {
 				result.add(currentBook);
 			}
 		}
@@ -59,7 +77,7 @@ public class BookContainerLogic {
 		int result = 0;
 		for (int i = 0; i < container.size(); i++) {
 			Book currentBook = container.get(i);
-			if (currentBook.getAuthor() == author) {
+			if (currentBook.getAuthor().equals(author)) {
 				result++;
 			}
 		}

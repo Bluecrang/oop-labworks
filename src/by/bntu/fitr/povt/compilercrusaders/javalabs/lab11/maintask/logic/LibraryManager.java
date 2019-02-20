@@ -1,6 +1,6 @@
 /* Logic for lab11
  * laboratory work ¹11 - Java One-dimensional Arrays
- * version: 1.0
+ * version: 1.1
  * Authors: Gilevskiy Denis Alexandrovich, Kitaiharodski Pavel
  * Brigade name: Compiler Crusaders
  * Group Number: 10701117
@@ -19,24 +19,43 @@ import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Librar
 
 public class LibraryManager {
 	
-	public void lendBook(Library library, LibraryAccount account, String bookTitle, Calendar dueDate) {
+	public boolean lendBook(Library library, LibraryAccount account, long bookId, Calendar dueDate) {
 		
-		if (library == null || account == null || bookTitle == null || dueDate == null) {
+		if (library == null || account == null || dueDate == null) {
 			throw new IllegalArgumentException();
 		}
+		
+		boolean result = false;
 		
 		if (isRegistered(library, account)) {
 			
 			List<Book> borrowedBooks = account.getBorrowedBooks();
 			List<Book> libraryBooks = library.getBooks();
-			Book book = findBookByTitle(libraryBooks, bookTitle);
+			Book book = findBookById(libraryBooks, bookId);
 			
 			if (book != null) {
 				book.setDueDate(dueDate);
 				book.setBorrowed(true);
 				borrowedBooks.add(book);
+				result = true;
 			}
 		}
+		
+		return result;
+	}
+	
+	public Book findBookById(List<Book> bookList, long id) {
+		
+		if (bookList == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		for (Book book : bookList) {
+			if (book.getBookId() == id) {
+				return book;
+			}
+		}
+		return null;
 	}
 	
 	public Book findBookByTitle(List<Book> bookList, String title) {
@@ -46,33 +65,37 @@ public class LibraryManager {
 		}
 		
 		for (Book book : bookList) {
-			if (book.getTitle() == title) {
+			if (book.getTitle().equals(title)) {
 				return book;
 			}
 		}
 		return null;
 	}
 	
-	public void returnBook(Library library, LibraryAccount account, String title) {
+	public boolean returnBook(Library library, LibraryAccount account, long bookId) {
 		
-		if (library == null || account == null || title == null) {
+		if (library == null || account == null) {
 			throw new IllegalArgumentException();
 		}
+		
+		boolean result = false;
 		
 		if (isRegistered(library, account)) {
 			
 			List<Book> libraryBooks = library.getBooks();
-			Book lendedBook = findBookByTitle(libraryBooks, title);
+			Book lendedBook = findBookById(libraryBooks, bookId);
 			List<Book> accountBooks = account.getBorrowedBooks();
-			Book borrowedBook = findBookByTitle(accountBooks, title);
+			Book borrowedBook = findBookById(accountBooks, bookId);
 					
 			if (borrowedBook != null && borrowedBook == lendedBook && borrowedBook.isBorrowed()) {
 				
 				accountBooks.remove(borrowedBook);
 				borrowedBook.setBorrowed(false);
 				borrowedBook.setDueDate(null);
+				result = true;
 			}			
-		}	
+		}
+		return result;
 	}
 	
 	public void registerAccount(Library library, LibraryAccount account) {
@@ -128,6 +151,40 @@ public class LibraryManager {
 		}
 		
 		return lendedBooks;
+	}
+	
+	public Library findLibraryById(List<Library> libraries, long id) {
+		
+		if (libraries == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		Library chosenLibrary = null;
+		for (Library library : libraries) {
+			if (library.getLibraryId() == id) {
+				chosenLibrary = library;
+				break;
+			}
+		}
+		
+		return chosenLibrary;
+	}
+	
+	public LibraryAccount findAccountById(List<LibraryAccount> accounts, long id) {
+		
+		if (accounts == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		LibraryAccount chosenAccount = null;
+		for (LibraryAccount account : accounts) {
+			if (account.getLibraryAccountId() == id) {
+				chosenAccount = account;
+				break;
+			}
+		}
+		
+		return chosenAccount;
 	}
 	
 	

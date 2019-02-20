@@ -77,4 +77,11 @@ public class LibraryAccount {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	
+	@Override
+	public String toString() {
+		return "ID: " + libraryAccountId + 
+		"; NAME: " + fullName +
+		"; ADDRESS:" + address;
+	}	
 }

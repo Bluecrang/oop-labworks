@@ -76,4 +76,12 @@ public class Book {
 	public void setDueDate(Calendar dueDate) {
 		this.dueDate = dueDate;
 	}
+	
+	@Override
+	public String toString() {
+		return "ID: " + bookId + 
+		"; TITLE: " + title + 
+		"; AUTHOR: " + author +
+		"; BORROWED: " + borrowed;
+	}	
 }

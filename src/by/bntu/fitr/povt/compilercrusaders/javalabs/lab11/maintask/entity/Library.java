@@ -87,5 +87,13 @@ public class Library {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "ID: " + libraryId + 
+		"; NAME: " + name +
+		"; PHONE NUMBER:" + telephoneNumber +
+		"; ADDRESS: " + address;
 	}	
 }
