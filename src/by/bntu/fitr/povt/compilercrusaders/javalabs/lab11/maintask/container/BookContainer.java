@@ -1,10 +1,10 @@
 /* Book container
  * laboratory work ¹11 - Java One-dimensional Arrays
- * version: 1.0
+ * version: 1.1
  * Author: Gilevskiy Denis Alexandrovich
  * Brigade name: Compiler Crusaders
  * Group Number: 10701117
- * Development date: 18.02.2019
+ * Development date: 20.02.2019
  */
 
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.container;
@@ -28,7 +28,6 @@ public class BookContainer {
 	
 	{
 		bookArray = new Book[10];
-		size = 0;
 	}
 	
 	public BookContainer() {}
@@ -36,7 +35,7 @@ public class BookContainer {
 	public BookContainer(Book... books) {
 		
 		if (books == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("books array can not be null");
 		}
 		
 		for (Book book : books) {
@@ -47,7 +46,7 @@ public class BookContainer {
 	public BookContainer(BookContainer container) {
 		
 		if (container == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("container can not be null");
 		}
 		
 		for (int i = 0; i < container.size(); i++) {
@@ -72,7 +71,7 @@ public class BookContainer {
 	public Book get(int index) {
 		
 		if (index < 0 || index >= size) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Index should be less than size and more or equal to 0");
 		}
 		
 		return bookArray[index];
@@ -81,7 +80,7 @@ public class BookContainer {
 	public void set(int index, Book book) {
 		
 		if (index < 0 || index >= size) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Index should be less than size and more or equal to 0");
 		}
 		
 		bookArray[index] = book;
@@ -89,8 +88,8 @@ public class BookContainer {
 	
 	public void remove(int index) {
 		
-		if (index < 0 || index < 0 || index >= size) {
-			throw new IllegalArgumentException();
+		if (index < 0 || index >= size) {
+			throw new IllegalArgumentException("Index should be less than size and more or equal to 0");
 		}
 		
 		System.arraycopy(bookArray, index + 1, bookArray, index, size - (index + 1));
@@ -105,7 +104,7 @@ public class BookContainer {
 	public boolean contains(Book book) {
 		
 		if (book == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("book can not be null");
 		}
 		
 		for (int i = 0; i < size(); i++) {
