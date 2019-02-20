@@ -7,7 +7,7 @@
  * Development date: 18.02.2019
  */
 
-package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.controller;
+package by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.controller;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;

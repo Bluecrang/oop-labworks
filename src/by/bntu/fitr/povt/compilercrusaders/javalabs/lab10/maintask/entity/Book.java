@@ -7,7 +7,7 @@
  * Development date: 20.12.2018
  */
 
-package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity;
+package by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.entity;
 
 import java.util.Calendar;
 

@@ -7,7 +7,7 @@
  * Development date: 20.12.2018
  */
 
-package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.logic;
+package by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.logic;
 
 import java.util.ArrayList;
 import java.util.Calendar;
