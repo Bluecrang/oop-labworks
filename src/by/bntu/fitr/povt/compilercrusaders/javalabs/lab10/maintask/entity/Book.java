@@ -1,5 +1,5 @@
 /* Book entity
- * laboratory work ¹11 - Java One-dimensional Arrays
+ * laboratory work ¹10 
  * version: 1.0
  * Authors: Gilevskiy Denis Alexandrovich, Kitaiharodski Pavel
  * Brigade name: Compiler Crusaders

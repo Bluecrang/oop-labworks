@@ -1,5 +1,5 @@
 /* Controller for vector calculator
- * laboratory work ยน11 - Java One-dimensional Arrays
+ * laboratory work น10 
  * version: 1.0
  * Authors: Gilevskiy Denis Alexandrovich
  * Brigade name: Compiler Crusaders
@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Book;
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Library;
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.LibraryAccount;
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.logic.LibraryManager;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.entity.Book;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.entity.Library;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.entity.LibraryAccount;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.logic.LibraryManager;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.view.Printer;
 
 public class Lab10 {

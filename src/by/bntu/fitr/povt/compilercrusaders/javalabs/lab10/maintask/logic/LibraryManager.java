@@ -1,5 +1,5 @@
-/* Logic for lab11
- * laboratory work ¹11 - Java One-dimensional Arrays
+/* Logic for lab10
+ * laboratory work ¹10 - Java One-dimensional Arrays
  * version: 1.0
  * Authors: Gilevskiy Denis Alexandrovich, Kitaiharodski Pavel
  * Brigade name: Compiler Crusaders
@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Book;
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Library;
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.LibraryAccount;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.entity.Book;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.entity.Library;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.maintask.entity.LibraryAccount;
 
 public class LibraryManager {
 	
