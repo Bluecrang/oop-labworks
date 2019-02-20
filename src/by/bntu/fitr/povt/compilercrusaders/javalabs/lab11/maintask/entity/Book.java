@@ -1,5 +1,6 @@
+
 /* Book entity
- * laboratory work น11 - Java One-dimensional Arrays
+ * laboratory work ยน11 - Java One-dimensional Arrays
  * version: 1.0
  * Authors: Gilevskiy Denis Alexandrovich, Kitaiharodski Pavel
  * Brigade name: Compiler Crusaders
@@ -76,4 +77,12 @@ public class Book {
 	public void setDueDate(Calendar dueDate) {
 		this.dueDate = dueDate;
 	}
+	
+	@Override
+	public String toString() {
+		return "ID: " + bookId + 
+		"; TITLE: " + title + 
+		"; AUTHOR: " + author +
+		"; BORROWED: " + borrowed;
+	}	
 }
