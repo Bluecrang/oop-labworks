@@ -1,5 +1,5 @@
 /* Controller for vector calculator
- * laboratory work ยน11 - Java One-dimensional Arrays
+ * laboratory work น10 
  * version: 1.0
  * Authors: Gilevskiy Denis Alexandrovich
  * Brigade name: Compiler Crusaders

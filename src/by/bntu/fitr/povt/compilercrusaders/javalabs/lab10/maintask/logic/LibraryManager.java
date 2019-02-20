@@ -1,5 +1,5 @@
-/* Logic for lab11
- * laboratory work ¹11 - Java One-dimensional Arrays
+/* Logic for lab10
+ * laboratory work ¹10 - Java One-dimensional Arrays
  * version: 1.0
  * Authors: Gilevskiy Denis Alexandrovich, Kitaiharodski Pavel
  * Brigade name: Compiler Crusaders
