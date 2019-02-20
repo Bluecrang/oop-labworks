@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Date;
 
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.util.KeyboardInput;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.container.BookContainer;
@@ -122,6 +123,7 @@ public class Lab11 {
 						BookContainer borrowedBooks = containerLogic.findBorrowed(bookContainer);
 						for (int i = 0; i < borrowedBooks.size(); i++) {
 							printer.println(borrowedBooks.get(i).toString());
+							printer.println("When: ", borrowedBooks.get(i).getDueDate());
 						}
 						break;
 					}
@@ -232,7 +234,9 @@ public class Lab11 {
 					List<Book> libraryBooks = chosenLibrary.getBooks();
 					
 					if (libraryBooks.contains(chosenBook)) {
-						if (manager.lendBook(chosenLibrary, chosenAccount, bookId, new GregorianCalendar(1999, 6, 18))) {	//TODO
+						GregorianCalendar e = new  GregorianCalendar();
+						e.setTime(new Date());
+						if (manager.lendBook(chosenLibrary, chosenAccount, bookId, e)) {
 							printer.println("Book successfully borrowed");
 						} else {
 							printer.println("Can not borrow book");
