@@ -19,7 +19,7 @@ import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.entity.Librar
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.maintask.logic.LibraryManager;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.view.Printer;
 
-public class Lab11 {
+public class Lab10 {
 	
 	public static void main(String[] args) {
 		
