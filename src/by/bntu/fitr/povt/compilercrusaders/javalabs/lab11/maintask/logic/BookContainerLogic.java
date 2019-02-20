@@ -1,5 +1,6 @@
+
 /* Logic for book container
- * laboratory work น11 - Java One-dimensional Arrays
+ * laboratory work ยน11 - Java One-dimensional Arrays
  * version: 1.0
  * Author: Gilevskiy Denis Alexandrovich
  * Brigade name: Compiler Crusaders
