@@ -1,5 +1,5 @@
 /* Logic for lab11
- * laboratory work ยน11 - Java One-dimensional Arrays
+ * laboratory work น11 - Java One-dimensional Arrays
  * version: 1.1
  * Authors: Gilevskiy Denis Alexandrovich, Kitaiharodski Pavel
  * Brigade name: Compiler Crusaders
@@ -33,7 +33,7 @@ public class LibraryManager {
 			List<Book> libraryBooks = library.getBooks();
 			Book book = findBookById(libraryBooks, bookId);
 			
-			if (book != null) {
+			if (book != null && !book.isBorrowed()) {
 				book.setDueDate(dueDate);
 				book.setBorrowed(true);
 				borrowedBooks.add(book);
@@ -58,20 +58,6 @@ public class LibraryManager {
 		return null;
 	}
 	
-	public Book findBookByTitle(List<Book> bookList, String title) {
-		
-		if (bookList == null || title == null) {
-			throw new IllegalArgumentException();
-		}
-		
-		for (Book book : bookList) {
-			if (book.getTitle().equals(title)) {
-				return book;
-			}
-		}
-		return null;
-	}
-	
 	public boolean returnBook(Library library, LibraryAccount account, long bookId) {
 		
 		if (library == null || account == null) {
@@ -87,7 +73,7 @@ public class LibraryManager {
 			List<Book> accountBooks = account.getBorrowedBooks();
 			Book borrowedBook = findBookById(accountBooks, bookId);
 					
-			if (borrowedBook != null && borrowedBook == lendedBook && borrowedBook.isBorrowed()) {
+			if (borrowedBook != null && lendedBook != null && borrowedBook == lendedBook && borrowedBook.isBorrowed()) {
 				
 				accountBooks.remove(borrowedBook);
 				borrowedBook.setBorrowed(false);
@@ -98,20 +84,23 @@ public class LibraryManager {
 		return result;
 	}
 	
-	public void registerAccount(Library library, LibraryAccount account) {
+	public boolean registerAccount(Library library, LibraryAccount account) {
 		
 		if (library == null || account == null) {
 			throw new IllegalArgumentException();
 		}
 		
+		boolean result = false;
 		if (!isRegistered(library, account)) {
 			List<LibraryAccount> accountList = library.getAccounts();
 			accountList.add(account);
+			result = true;
 		}
 		
+		return result;
 	}
 	
-	public void deregisterAccount(Library library, LibraryAccount account) {
+	public boolean deregisterAccount(Library library, LibraryAccount account) {
 		
 		if (library == null || account == null) {
 			throw new IllegalArgumentException();
@@ -120,7 +109,10 @@ public class LibraryManager {
 		if (isRegistered(library, account)) {
 			List<LibraryAccount> accountList = library.getAccounts();
 			accountList.remove(account);
+			return true;
 		}
+		
+		return false;
 		
 	}
 	
