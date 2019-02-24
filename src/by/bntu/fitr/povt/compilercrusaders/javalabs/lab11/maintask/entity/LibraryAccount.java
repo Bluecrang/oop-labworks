@@ -79,6 +79,49 @@ public class LibraryAccount {
 	}
 	
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (active ? 1231 : 1237);
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((borrowedBooks == null) ? 0 : borrowedBooks.hashCode());
+		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
+		result = prime * result + (int) (libraryAccountId ^ (libraryAccountId >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LibraryAccount other = (LibraryAccount) obj;
+		if (active != other.active)
+			return false;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (borrowedBooks == null) {
+			if (other.borrowedBooks != null)
+				return false;
+		} else if (!borrowedBooks.equals(other.borrowedBooks))
+			return false;
+		if (fullName == null) {
+			if (other.fullName != null)
+				return false;
+		} else if (!fullName.equals(other.fullName))
+			return false;
+		if (libraryAccountId != other.libraryAccountId)
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
 		return "ID: " + libraryAccountId + 
 		"; NAME: " + fullName +
