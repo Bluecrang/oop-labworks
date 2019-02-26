@@ -1,7 +1,7 @@
-/* Main class for lab11
+/* controller class for individual task 5
  * laboratory work ¹11 - Java One-dimensional Arrays
  * version: 1.0
- * Authors: Gilevskiy Denis Alexandrovich, Kitaiharodski Pavel
+ * Author: Gilevskiy Denis Alexandrovich
  * Brigade name: Compiler Crusaders
  * Group Number: 10701117
  * Development date: 20.12.2018
@@ -12,7 +12,7 @@ package by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.individual.task5.cont
 import java.util.InputMismatchException;
 import java.util.Random;
 
-import by.bntu.fitr.povt.compilercrusaders.javalabs.lab10.extratask.util.KeyboardInput;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.individual.task5.util.KeyboardInput;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.individual.task5.exception.VectorException;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.individual.task5.logic.VectorLogic;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab11.view.Printer;
