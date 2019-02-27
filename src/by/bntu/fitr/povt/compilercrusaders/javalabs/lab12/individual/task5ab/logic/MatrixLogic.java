@@ -12,13 +12,11 @@ package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.individual.task5ab.lo
 import java.util.ArrayList;
 import java.util.List;
 
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.individual.task5ab.exception.IndexException;
+
 public class MatrixLogic {
 	
-	public double findMinInColumn(double[][] matrix, int columnIndex) {
-		
-		if (matrix == null || columnIndex < 0) {
-			throw new IllegalArgumentException();
-		}
+	private double findMinInColumn(double[][] matrix, int columnIndex) {
 		
 		double min = matrix[0][columnIndex];
 		for (double[] row : matrix) {
@@ -53,7 +51,7 @@ public class MatrixLogic {
 		}
 	}
 	
-	public List<Integer> findOrderedRows(double[][] matrix) {
+	public List<Integer> findOrderedRowsIndexes(double[][] matrix) {
 		
 		if (matrix == null) {
 			throw new IllegalArgumentException();
@@ -71,41 +69,31 @@ public class MatrixLogic {
 		return result;
 	}
 	
-	public double findMaxInOrderedRows(double[][] matrix, List<Integer> rowsIndexes) {
+	public double findMaxInRows(double[][] matrix, List<Integer> rowsIndexes) throws IndexException {
 		
-		if (matrix == null || rowsIndexes == null || rowsIndexes.isEmpty()) {
+		if (matrix == null || matrix.length == 0 ||rowsIndexes == null || rowsIndexes.isEmpty()) {
 			throw new IllegalArgumentException();
 		}
+		
 		int firstIndex = rowsIndexes.get(0);
 		
-		double max = Math.max(matrix[firstIndex][0], matrix[firstIndex][matrix[firstIndex].length - 1]);
-		
-		if (rowsIndexes.size() == 1) {
-			return max;
-		}
-		
-		for (int i = 1; i < rowsIndexes.size(); i++) {
-			
-			int index = rowsIndexes.get(i);
-			double currentMax = Math.max(matrix[index][0], matrix[index][matrix[index].length - 1]);
-			
-			if (currentMax > max) {
-				max = currentMax;
+		try {
+			double max = max(matrix[firstIndex]);
+			for (int i = 1; i < rowsIndexes.size(); i++) {
+				
+				int index = rowsIndexes.get(i);
+				double currentMax = max(matrix[index]);
+				if (currentMax > max) {
+					max = currentMax;
+				}
 			}
+			return max;
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexException("Illegal index in rowsIndexes list");
 		}
-		
-		return max;
 	}
 	
-	public boolean checkOrdered(double[] vector) {
-		
-		if (vector == null || vector.length < 1) {
-			throw new IllegalArgumentException();
-			
-		} else if (vector.length == 1) {
-			return true;
-			
-		}
+	private boolean checkOrdered(double[] vector) {
 		
 		boolean result = false;
 		
@@ -141,5 +129,18 @@ public class MatrixLogic {
 			}
 		}
 		return result;
+	}
+	
+	private double max(double[] array) {
+		
+		double max = array[0];
+		
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] > max) {
+				max = array[i];
+			}
+		}
+		
+		return max;
 	}
 }
