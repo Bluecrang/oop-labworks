@@ -181,6 +181,10 @@ public class LibraryManager {
 	
 	public long[][] findLibrariesBooksIds(List<Library> libraries) {
 		
+		if (libraries == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		long[][] result = new long[libraries.size()][];
 		
 		for (int i = 0; i < libraries.size(); i++) {

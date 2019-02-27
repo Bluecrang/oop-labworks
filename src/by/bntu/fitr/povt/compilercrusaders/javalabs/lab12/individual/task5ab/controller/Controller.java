@@ -111,9 +111,9 @@ public class Controller {
 				printer.println(Arrays.toString(row));
 			}
 			printer.println("\n");
-			List<Integer> orderedRowsIndexes = logic.findOrderedRows(matrix);
+			List<Integer> orderedRowsIndexes = logic.findOrderedRowsIndexes(matrix);
 			if (!orderedRowsIndexes.isEmpty()) {
-				double max = logic.findMaxInOrderedRows(matrix, orderedRowsIndexes);
+				double max = logic.findMaxInRows(matrix, orderedRowsIndexes);
 				printer.println("max element in ordered rows: " + max);
 			} else {
 				printer.println("There are no ordered rows");
