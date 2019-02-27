@@ -1,10 +1,10 @@
-/* Tests for LibraryManager class
- * laboratory work ¹11 - Java One-dimensional Arrays
- * version: 1.1
+/* unit tests for LibraryManager class
+ * laboratory work ¹12 - Java Multidimensional Arrays
+ * version: 1.0
  * Author: Gilevskiy Denis Alexandrovich
  * Brigade name: Compiler Crusaders
  * Group Number: 10701117
- * Development date: 23.02.2018
+ * Development date: 26.12.2018
  */
 
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.logic;

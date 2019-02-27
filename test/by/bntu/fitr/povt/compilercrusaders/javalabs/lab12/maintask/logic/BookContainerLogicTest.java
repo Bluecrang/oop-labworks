@@ -1,3 +1,12 @@
+/* unit tests for BookContainerLogic class
+ * laboratory work ¹12 - Java Multidimensional Arrays
+ * version: 1.0
+ * Author: Gilevskiy Denis Alexandrovich
+ * Brigade name: Compiler Crusaders
+ * Group Number: 10701117
+ * Development date: 26.12.2018
+ */
+
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.logic;
 
 import org.junit.Assert;
