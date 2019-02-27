@@ -71,7 +71,7 @@ public class MatrixLogic {
 		double max = matrix[0][0];
 		for (int i = 0; i < matrix.length; i++) {
 				for (int j = 0; j < matrix[i].length; j++) {
-					if (max < matrix[i][j] && findDuplicate(matrix, matrix[i][j])){
+					if (max <= matrix[i][j] && findDuplicate(matrix, matrix[i][j])){
 						max = matrix[i][j];
 						flag = false;
 					}

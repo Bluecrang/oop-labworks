@@ -18,7 +18,6 @@ public class Controller {
 	public static void main(String[] args) {
 		
 		KeyboardInput input = new KeyboardInput();
-		KeyboardInput input2 = new KeyboardInput();
 		Printer printer = new Printer();
 		Random random = new Random();
 		MatrixLogic logic = new MatrixLogic();
@@ -91,7 +90,7 @@ public class Controller {
 					for (int i = 0; i < matrix2.length; i++) {
 						for (int j = 0; j < matrix2[i].length; j++) {
 							printer.println("enter element (row = " + (i + 1) + "; column = " + (j + 1) + "): ");
-							matrix2[i][j] = input2.nextDouble();
+							matrix2[i][j] = input.nextDouble();
 						}
 					}
 				} catch (InputMismatchException e) {
@@ -117,7 +116,7 @@ public class Controller {
 				printer.println(Arrays.toString(row));
 			}
 			printer.println("Second matrix:");
-			for (double[] row : matrix) {
+			for (double[] row : matrix2) {
 				printer.println(Arrays.toString(row));
 			}
 			printer.println("\n");
