@@ -11,15 +11,35 @@ import java.util.Arrays;
 
 public class Matrix {
 	
+	public static final int DEFAULT_SIZE = 10;
+	
 	private double[][] matrix;
 
+	public Matrix() {
+		this.matrix = new double[DEFAULT_SIZE][DEFAULT_SIZE];
+	}
+	
 	public Matrix(double[][] matrix) {
 		
-		if (matrix == null) {
-			matrix = new double[][]{};
-		}
-		
 		this.matrix = matrix;
+	}
+	
+	public Matrix(int size) {
+
+		this.matrix = new double[size][size];
+	}
+	
+	public Matrix(int rowCount, int columnCount) {
+
+		this.matrix = new double[rowCount][columnCount];
+	}
+	
+	public Matrix(Matrix matrix) {
+		
+		this.matrix = Arrays.copyOf(matrix.matrix, matrix.matrix.length);
+		for (int i = 0; i < this.matrix.length; i++) {
+			this.matrix[i] = Arrays.copyOf(matrix.matrix[i], matrix.matrix[i].length);
+		}
 	}
 	
 	public double[] getRow(int index) {
@@ -75,5 +95,21 @@ public class Matrix {
 			return false;
 		return true;
 	}
-	
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        for (double[] row : matrix) {
+            StringBuilder sbRow = new StringBuilder("{");
+            Object[] rowValues = new Object[row.length];
+            for (int i = 0; i < row.length; i++) {
+                sbRow.append(" %10.3f");
+                rowValues[i] = row[i];
+            }
+            sbRow.append(" }");
+            sb.append(String.format(sbRow.toString(), rowValues));
+            sb.append('\n');
+        }
+        return sb.toString();
+    }
 }
