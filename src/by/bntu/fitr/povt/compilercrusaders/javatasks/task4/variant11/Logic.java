@@ -1,16 +1,20 @@
 package by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant11;
 
 import java.util.Arrays;
+import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.Matrix;
+
 
 public class Logic {
-	public boolean isSymmetric(double matrix[][]) {
+	public boolean isSymmetric(Matrix matrix) {
+		
 		if (matrix == null) {
 			throw new IllegalArgumentException();
 		}
 		boolean symmetric = true;
-		for(int i = 0; i < matrix.length; i++) {
-			for(int j = 0; j <matrix[0].length; j++) {
-				if (matrix[j][i] != matrix[i][j] && i != j) {
+		for(int i = 0; i < matrix.getLength(); i++) {
+			for(int j = 0; j <matrix.getRow(i).length; j++) {
+				int res = Double.compare(matrix.getElement(i, j), matrix.getElement(j,  i));
+				if (res != 0 && i != j) {
 					symmetric = false;
 				}
 			}
@@ -19,16 +23,17 @@ public class Logic {
 		return symmetric;
 	}
 	
-	public int[][] findMaxLocals(double matrix[][]){
+	public int[][] findMaxLocals(Matrix matrix){
 		if (matrix == null) {
 			throw new IllegalArgumentException();
 		}
-		int[][] maxValue = {{0,0}};
+		int[][] maxValue = {{0, 0}};
 		int index = 0;
-		for(int i = 1; i < matrix.length -1; i++) {
-			for(int j = 1; j < matrix[0].length - 1; j++) {
-				if(matrix[i][j] > matrix[i - 1][j] && matrix[i][j] > matrix[i][j - 1] && 
-						matrix[i][j] > matrix[i][j + 1] && matrix[i][j] > matrix[i + 1][j]) {
+		double []row ;
+		for(int i = 1; i < matrix.getLength() -1; i++) {
+			for(int j = 1; j < matrix.getRow(i).length - 1; j++) {
+				if( matrix.getElement(i,  j) > matrix.getElement(i - 1,  j)  && matrix.getElement(i,  j) > matrix.getElement(i,  j -1) && 
+						matrix.getElement(i, j) > matrix.getElement(i, j + 1) && matrix.getElement(i, j) > matrix.getElement(i + 1,  j)) {
 					if(index > 0) {
 					maxValue = Arrays.copyOf(maxValue, maxValue.length+1);
 					}	
@@ -38,45 +43,41 @@ public class Logic {
 				}
 			}
 		}
-		if(matrix[matrix.length - 1][0] > matrix[matrix.length -2][0] && matrix[matrix.length -1][0] > matrix[matrix.length - 1][1]) {
+		if(matrix.getElement(matrix.getLength() -1, 0) > matrix.getElement(matrix.getLength() - 2, 0) && 
+				matrix.getElement(matrix.getLength() - 1, 0) > matrix.getElement(matrix.getLength() - 1, 1)) {
 			if(index > 0) {
 				maxValue = Arrays.copyOf(maxValue, maxValue.length + 1);
 				}	
-			maxValue[index][0] = matrix.length - 1;
+			maxValue[index][0] = matrix.getLength() - 1;
 			maxValue[index][1] = 0;
 			index ++;}
-		if(matrix[0][matrix[0].length - 1] > matrix[0][matrix[0].length - 2]
-				&& matrix[0][matrix[0].length - 1] > matrix[1][matrix[0].length - 1]) {
+		row = matrix.getRow(0);
+		if (matrix.getElement(0, row.length - 1) > matrix.getElement(0, row.length - 2)
+				&& matrix.getElement(0, row.length - 1) > matrix.getElement(1, row.length - 1)) {
 			if(index > 0) {
 				maxValue = Arrays.copyOf(maxValue, maxValue.length + 1);
 				}	
-			int []a =  {0, matrix[0].length - 1};
+			int []a =  {0, row.length - 1};
 			maxValue[index] = a;
 			index ++;}
 		return maxValue;
 	}
 	
-	public void cleanMax(double matrix[][], int maxValue[][]) {
+	public void cleanMax(Matrix matrix, int maxValue[][]) {
 		if (matrix == null || maxValue == null) {
 			throw new IllegalArgumentException();
 		}
 		for(int i = 0; i < maxValue.length; i++) {
-			matrix[maxValue[i][0]][maxValue[i][1]] = 0;
+			matrix.setElement(maxValue[i][0], maxValue[i][1], 0);
 		}
 		}
 	
-	 public boolean findSolution(double matrix[][]) {
+	 public boolean findSolution(Matrix matrix) {
 		 if (matrix == null) {
 				throw new IllegalArgumentException();
 			}
 		 int [][] maxValueble = findMaxLocals(matrix);
 		 cleanMax(matrix, maxValueble);
-		/* System.out.print("_____");
-	 for(int i = 0; i < matrix.length; i++) {
-				for(int j = 0; j <matrix[0].length; j++) {
-				System.out.print(matrix[i][j]);
-				System.out.print("|");}
-			System.out.print("_____");}*/
 		 return isSymmetric(matrix);
 	 }
 }
