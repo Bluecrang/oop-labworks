@@ -5,7 +5,9 @@
  * Group Number: 10701117
  */
 
-package by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6;
+package by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.logic;
+
+import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.entity.Matrix;
 
 public class MatrixLogic {
 	
@@ -13,7 +15,7 @@ public class MatrixLogic {
 	
 	public Boolean isSymetric(Matrix matrix) {
 		
-		if (matrix == null || matrix.getLength() == 0 || checkNullRows(matrix)) {
+		if (matrix == null || matrix.getRowCount() == 0) {
 			return null;
 		}
 		
@@ -21,8 +23,8 @@ public class MatrixLogic {
 			return false;
 		}
 		
-		for (int i = 0; i < matrix.getLength(); i++) {
-			for (int j = 0; j < matrix.getRow(i).length; j++) {
+		for (int i = 0; i < matrix.getRowCount(); i++) {
+			for (int j = 0; j < matrix.getRowLength(i); j++) {
 				if (!(i == j)) {
 					if (!(matrix.getElement(i, j) - matrix.getElement(j, i) < EPSILON)) {
 						return false;
@@ -35,21 +37,21 @@ public class MatrixLogic {
 	
 	public int[] maxAtDiagonalsIndex(Matrix matrix) {
 		
-		if (matrix == null || matrix.getLength() == 0 || checkNullRows(matrix) || !checkSquareMatrix(matrix)) {
+		if (matrix == null || matrix.getRowCount() == 0 || !checkSquareMatrix(matrix)) {
 			return null;
 		}
 		
 		int maxRowIndex = 0;
 		int maxColumnIndex = 0;
-		for (int i = 0; i < matrix.getLength(); i++) {
+		for (int i = 0; i < matrix.getRowCount(); i++) {
 			if (matrix.getElement(maxRowIndex, maxColumnIndex) < matrix.getElement(i, i)) {
 				maxRowIndex = i;
 				maxColumnIndex = i;
 			}
 		}
 		
-		for (int i = 0; i < matrix.getLength(); i++) {
-			for (int j = matrix.getRow(i).length - 1; j >= 0; j--) {
+		for (int i = 0; i < matrix.getRowCount(); i++) {
+			for (int j = matrix.getRowLength(i) - 1; j >= 0; j--) {
 				if (matrix.getElement(maxRowIndex, maxColumnIndex) < matrix.getElement(i, j)) {
 					maxRowIndex = i;
 					maxColumnIndex = i;
@@ -62,14 +64,14 @@ public class MatrixLogic {
 	public boolean swapElementWithCentralElement(Matrix matrix, int[] indexes) {
 		
 		if (matrix == null || indexes == null || indexes.length != 2 || 
-				matrix.getLength() == 0 ||  matrix.getLength() % 2 == 0 || checkNullRows(matrix) ||
-				!checkSquareMatrix(matrix) || (matrix.getLength() - 1) < indexes[0] || (matrix.getRow(0).length - 1) < indexes[1]) {
+				matrix.getRowCount() == 0 ||  matrix.getRowCount() % 2 == 0 ||
+				!checkSquareMatrix(matrix) || (matrix.getRowCount() - 1) < indexes[0] || (matrix.getRowLength(0)- 1) < indexes[1]) {
 			return false;
 		}
 		
 		int rowIndex = indexes[0];
 		int columnIndex = indexes[1];
-		int halfLength = (matrix.getLength() - 1) / 2;
+		int halfLength = (matrix.getRowCount() - 1) / 2;
 		double temp = matrix.getElement(rowIndex, columnIndex);
 		matrix.setElement(rowIndex, columnIndex, matrix.getElement(halfLength, halfLength));
 		matrix.setElement(halfLength, halfLength, temp);
@@ -78,22 +80,12 @@ public class MatrixLogic {
 	
 	private boolean checkSquareMatrix(Matrix matrix) {
 		
-		for (int i = 0; i < matrix.getLength(); i++) {
-			if (matrix.getLength() != matrix.getRow(i).length) {
+		for (int i = 0; i < matrix.getRowCount(); i++) {
+			if (matrix.getRowCount() != matrix.getRowLength(i)) {
 				return false;
 			}
 		}
 		
 		return true;
-	}
-	
-	private boolean checkNullRows(Matrix matrix) {
-		for (int i = 0; i < matrix.getLength(); i++) {
-			if (matrix.getRow(i) == null) {
-				return true;
-			}
-		}
-		
-		return false;
 	}
 }
