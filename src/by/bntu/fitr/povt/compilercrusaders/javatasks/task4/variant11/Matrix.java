@@ -5,7 +5,7 @@
  * Group Number: 10701117
  */
 
-package by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6;
+package by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant11;
 
 import java.util.Arrays;
 

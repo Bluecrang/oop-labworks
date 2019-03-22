@@ -104,7 +104,7 @@ public class MatrixLogicTest {
 		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		int[] expected = {2, 2};
 		
-		int[] actual = logic.maxAtDiagonalsIndex(matrix);
+		int[] actual = logic.findIdexesOfMaxAtDiagonals(matrix);
 		
 		Assert.assertArrayEquals(expected, actual);
 	}
@@ -120,7 +120,7 @@ public class MatrixLogicTest {
 		};
 		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		
-		int[] actual = logic.maxAtDiagonalsIndex(matrix);
+		int[] actual = logic.findIdexesOfMaxAtDiagonals(matrix);
 		
 		Assert.assertNull(actual);
 	}
@@ -130,7 +130,7 @@ public class MatrixLogicTest {
 		
 		ArrayMatrix matrix = null;
 		
-		int[] condition = logic.maxAtDiagonalsIndex(matrix);
+		int[] condition = logic.findIdexesOfMaxAtDiagonals(matrix);
 		
 		Assert.assertNull(condition);
 	}
@@ -140,7 +140,7 @@ public class MatrixLogicTest {
 		
 		ArrayMatrix matrix = new ArrayMatrix(new double[][]{});
 		
-		int[] condition = logic.maxAtDiagonalsIndex(matrix);
+		int[] condition = logic.findIdexesOfMaxAtDiagonals(matrix);
 		
 		Assert.assertNull(condition);
 	}

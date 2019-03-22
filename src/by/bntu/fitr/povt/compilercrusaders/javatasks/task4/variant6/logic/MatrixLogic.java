@@ -35,7 +35,7 @@ public class MatrixLogic {
 		return true;
 	}
 	
-	public int[] maxAtDiagonalsIndex(Matrix matrix) {
+	public int[] findIdexesOfMaxAtDiagonals(Matrix matrix) {
 		
 		if (matrix == null || matrix.getRowCount() == 0 || !checkSquareMatrix(matrix)) {
 			return null;

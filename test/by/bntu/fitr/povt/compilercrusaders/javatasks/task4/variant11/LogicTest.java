@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.Matrix;
+import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant11.Matrix;
 
 class LogicTest {
 	private Logic logic = new Logic();

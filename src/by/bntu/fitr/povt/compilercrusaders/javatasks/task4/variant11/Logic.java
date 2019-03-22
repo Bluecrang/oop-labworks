@@ -1,7 +1,7 @@
 package by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant11;
 
 import java.util.Arrays;
-import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.Matrix;
+import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant11.Matrix;
 
 
 public class Logic {
