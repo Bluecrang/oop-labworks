@@ -5,36 +5,45 @@
  * Group Number: 10701117
  */
 
-package by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6;
+package by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.entity.impl;
 
 import java.util.Arrays;
 
-public class Matrix {
+import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.entity.Matrix;
+
+public class ArrayMatrix implements Matrix {
 	
 	public static final int DEFAULT_SIZE = 10;
 	
 	private double[][] matrix;
 
-	public Matrix() {
+	public ArrayMatrix() {
 		this.matrix = new double[DEFAULT_SIZE][DEFAULT_SIZE];
 	}
 	
-	public Matrix(double[][] matrix) {
+	public ArrayMatrix(double[][] matrix) {
 		
-		this.matrix = matrix;
+		this.matrix = new double[matrix.length][];  
+		for (int i = 0; i < matrix.length; i++) {
+			if (matrix[i] != null) {
+				this.matrix[i] = Arrays.copyOf(matrix[i], matrix[i].length);
+			} else {
+				this.matrix[i] = new double[DEFAULT_SIZE];
+			}
+		}
 	}
 	
-	public Matrix(int size) {
+	public ArrayMatrix(int size) {
 
 		this.matrix = new double[size][size];
 	}
 	
-	public Matrix(int rowCount, int columnCount) {
+	public ArrayMatrix(int rowCount, int columnCount) {
 
 		this.matrix = new double[rowCount][columnCount];
 	}
 	
-	public Matrix(Matrix matrix) {
+	public ArrayMatrix(ArrayMatrix matrix) {
 		
 		this.matrix = Arrays.copyOf(matrix.matrix, matrix.matrix.length);
 		for (int i = 0; i < this.matrix.length; i++) {
@@ -42,13 +51,17 @@ public class Matrix {
 		}
 	}
 	
-	public double[] getRow(int index) {
+	public int getRowCount() {
+		return matrix.length;
+	}
+	
+	public Integer getRowLength(int index) {
 		
-		if (matrix.length - 1 < index) {
+		if (matrix.length <= index) {
 			return null;
 		}
 		
-		return matrix[index];
+		return matrix[index].length;
 	}
 	
 	public Double getElement(int row, int column) {
@@ -69,10 +82,6 @@ public class Matrix {
 		matrix[row][column] = element;
 		return true;
 	}
-	
-	public int getLength() {
-		return matrix.length;
-	}
 
 	@Override
 	public int hashCode() {
@@ -90,7 +99,7 @@ public class Matrix {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Matrix other = (Matrix) obj;
+		ArrayMatrix other = (ArrayMatrix) obj;
 		if (!Arrays.deepEquals(matrix, other.matrix))
 			return false;
 		return true;

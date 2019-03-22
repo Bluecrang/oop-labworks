@@ -11,8 +11,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.Matrix;
-import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.MatrixLogic;
+import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.entity.impl.ArrayMatrix;
+import by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.logic.MatrixLogic;
 
 public class MatrixLogicTest {
 	
@@ -32,7 +32,7 @@ public class MatrixLogicTest {
 				{2, 1, 6},
 		};
 		
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		
 		Boolean condition = logic.isSymetric(matrix);
 		
@@ -48,7 +48,7 @@ public class MatrixLogicTest {
 				{2, 1, 6},
 		};
 		
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		
 		Boolean condition = logic.isSymetric(matrix);
 		
@@ -56,27 +56,11 @@ public class MatrixLogicTest {
 	}
 	
 	@Test
-	public void isSymetric_matrixRowNull_null() {
-		
-		double[][] arrayOfArrays = {
-				{2, 3, 2},
-				{3, 1, 3},
-				null,
-		};
-		
-		Matrix matrix = new Matrix(arrayOfArrays);
-		
-		Boolean condition = logic.isSymetric(matrix);
-		
-		Assert.assertNull(condition);
-	}
-	
-	@Test
 	public void isSymetric_matrixLengthZero_null() {
 		
 		double[][] arrayOfArrays = new double[0][0];
 		
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		
 		Boolean condition = logic.isSymetric(matrix);
 		
@@ -86,7 +70,7 @@ public class MatrixLogicTest {
 	@Test
 	public void isSymetric_MatrixNull_null() {
 		
-		Matrix matrix = null;
+		ArrayMatrix matrix = null;
 		
 		Boolean condition = logic.isSymetric(matrix);
 		
@@ -102,7 +86,7 @@ public class MatrixLogicTest {
 				{2, 1, 6, 4},
 		};
 		
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		
 		Boolean condition = logic.isSymetric(matrix);
 		
@@ -117,7 +101,7 @@ public class MatrixLogicTest {
 				{3, 1, 1},
 				{12, 1, 6},
 		};
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		int[] expected = {2, 2};
 		
 		int[] actual = logic.maxAtDiagonalsIndex(matrix);
@@ -134,22 +118,7 @@ public class MatrixLogicTest {
 				{2, 1, 6},
 				{2, 1, 6},
 		};
-		Matrix matrix = new Matrix(arrayOfArrays);
-		
-		int[] actual = logic.maxAtDiagonalsIndex(matrix);
-		
-		Assert.assertNull(actual);
-	}
-	
-	@Test
-	public void maxAtDiagonalsIndex_matrixRowNull_null() {
-		
-		double[][] arrayOfArrays = {
-				{2, 3, 2},
-				null,
-				{2, 1, 6},
-		};
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		
 		int[] actual = logic.maxAtDiagonalsIndex(matrix);
 		
@@ -159,7 +128,7 @@ public class MatrixLogicTest {
 	@Test
 	public void maxAtDiagonalsIndex_MatrixNull_null() {
 		
-		Matrix matrix = null;
+		ArrayMatrix matrix = null;
 		
 		int[] condition = logic.maxAtDiagonalsIndex(matrix);
 		
@@ -169,7 +138,7 @@ public class MatrixLogicTest {
 	@Test
 	public void maxAtDiagonalsIndex_MatrixLengthZero_null() {
 		
-		Matrix matrix = new Matrix(new double[][]{});
+		ArrayMatrix matrix = new ArrayMatrix(new double[][]{});
 		
 		int[] condition = logic.maxAtDiagonalsIndex(matrix);
 		
@@ -184,7 +153,7 @@ public class MatrixLogicTest {
 				{3, 1, 1},
 				{2, 1, 6},
 		};
-		Matrix actual = new Matrix(arrayOfArrays);
+		ArrayMatrix actual = new ArrayMatrix(arrayOfArrays);
 		int[] indexes = {0, 0};
 		
 		double[][] arrayOfArrays2 = {
@@ -192,7 +161,7 @@ public class MatrixLogicTest {
 				{3, 2, 1},
 				{2, 1, 6},
 		};
-		Matrix expected = new Matrix(arrayOfArrays2);
+		ArrayMatrix expected = new ArrayMatrix(arrayOfArrays2);
 		
 		logic.swapElementWithCentralElement(actual, indexes);
 		
@@ -202,7 +171,7 @@ public class MatrixLogicTest {
 	@Test
 	public void swapElementWithCentralElement_matrixNull_false() {
 		
-		Matrix matrix = null;
+		ArrayMatrix matrix = null;
 		int[] indexes = {0, 0};
 
 		
@@ -214,7 +183,7 @@ public class MatrixLogicTest {
 	@Test
 	public void swapElementWithCentralElement_indexesNull_false() {
 		
-		Matrix matrix = new Matrix(new double[][] {
+		ArrayMatrix matrix = new ArrayMatrix(new double[][] {
 			{1, 2, 3},
 			{2, 3, 4},
 			{4, 5, 6}
@@ -236,7 +205,7 @@ public class MatrixLogicTest {
 				{2, 1, 6},
 				{2, 1, 6},
 		};
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		int[] indexes = {0, 0};
 		
 		Boolean condition = logic.swapElementWithCentralElement(matrix, indexes);
@@ -252,7 +221,7 @@ public class MatrixLogicTest {
 				{3, 1, 1},
 				{2, 1, 6},
 		};
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		int[] indexes = {0, 0, 1};
 		
 		Boolean condition = logic.swapElementWithCentralElement(matrix, indexes);
@@ -268,7 +237,7 @@ public class MatrixLogicTest {
 				{3, 1, 1},
 				{2, 1, 6},
 		};
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		int[] indexes = {0};
 		
 		Boolean condition = logic.swapElementWithCentralElement(matrix, indexes);
@@ -282,7 +251,7 @@ public class MatrixLogicTest {
 		double[][] arrayOfArrays = new double[0][0];
 		int[] indexes = {0, 0};
 		
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		
 		Boolean condition = logic.swapElementWithCentralElement(matrix, indexes);
 		
@@ -299,7 +268,7 @@ public class MatrixLogicTest {
 		};
 		int[] indexes = {5, 1};
 		
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		
 		Boolean condition = logic.swapElementWithCentralElement(matrix, indexes);
 		
@@ -316,24 +285,7 @@ public class MatrixLogicTest {
 		};
 		int[] indexes = {1, 5};
 		
-		Matrix matrix = new Matrix(arrayOfArrays);
-		
-		Boolean condition = logic.swapElementWithCentralElement(matrix, indexes);
-		
-		Assert.assertFalse(condition);
-	}
-	
-	@Test
-	public void swapElementWithCentralElement_matrixRowNull_false() {
-		
-		double[][] arrayOfArrays = new double[][] {
-			{1, 2, 3},
-			{5, 6, 7},
-			null
-		};
-		int[] indexes = {0, 0};
-		
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		
 		Boolean condition = logic.swapElementWithCentralElement(matrix, indexes);
 		
@@ -350,7 +302,7 @@ public class MatrixLogicTest {
 		};
 		int[] indexes = {0, 0};
 		
-		Matrix matrix = new Matrix(arrayOfArrays);
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
 		
 		Boolean condition = logic.swapElementWithCentralElement(matrix, indexes);
 		
