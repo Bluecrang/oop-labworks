@@ -5,7 +5,7 @@
  * Group Number: 10701117
  */
 
-package by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6;
+package by.bntu.fitr.povt.compilercrusaders.javatasks.task4.variant6.logic;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -46,6 +46,22 @@ public class MatrixLogicTest {
 				{2, 3, 2},
 				{3, 1, 3},
 				{2, 1, 6},
+		};
+		
+		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
+		
+		Boolean condition = logic.isSymetric(matrix);
+		
+		Assert.assertFalse(condition);
+	}
+	
+	@Test
+	public void isSymetric_notSquareMatrix_false() {
+		
+		double[][] arrayOfArrays = {
+				{2, 3, 2, 5},
+				{3, 1, 3, 4},
+				{2, 1, 6, 2},
 		};
 		
 		ArrayMatrix matrix = new ArrayMatrix(arrayOfArrays);
