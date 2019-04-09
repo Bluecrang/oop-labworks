@@ -34,7 +34,7 @@ public class Book {
 		this.title = book.title;
 		this.author = book.author;
 		this.borrowed = book.borrowed;
-		this.dueDate = book.dueDate;
+		this.dueDate = (Calendar) book.dueDate.clone();
 	}
 	
 	public long getBookId() {
@@ -122,9 +122,12 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "ID: " + bookId + 
-		"; TITLE: " + title + 
-		"; AUTHOR: " + author +
-		"; BORROWED: " + borrowed;
+		final StringBuilder sb = new StringBuilder();
+		sb.append("ID: ").append(bookId)
+		.append("; TITLE: ").append(title)
+		.append("; AUTHOR: ").append(author)
+		.append("; BORROWED: ").append(borrowed)
+		.append("; DUE DATE: ").append(dueDate);
+		return sb.toString();
 	}	
 }

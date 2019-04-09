@@ -9,6 +9,7 @@
 
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryAccount {
@@ -33,7 +34,10 @@ public class LibraryAccount {
 	public LibraryAccount(LibraryAccount account) {
 		this.libraryAccountId = account.libraryAccountId;
 		this.fullName = account.fullName;
-		this.borrowedBooks = account.borrowedBooks;
+		this.borrowedBooks = new ArrayList<>();
+		for (Book book : borrowedBooks) {
+			this.borrowedBooks.add(new Book(book));
+		}
 		this.address = account.address;
 		this.active = account.active;
 	}
@@ -123,8 +127,10 @@ public class LibraryAccount {
 
 	@Override
 	public String toString() {
-		return "ID: " + libraryAccountId + 
-		"; NAME: " + fullName +
-		"; ADDRESS:" + address;
+		final StringBuilder sb = new StringBuilder("ID: ");
+		sb.append(libraryAccountId)
+		.append("; NAME: ").append(fullName)
+		.append("; ADDRESS: ").append(address);
+		return sb.toString();
 	}	
 }

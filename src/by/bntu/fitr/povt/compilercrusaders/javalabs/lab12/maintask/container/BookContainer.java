@@ -50,7 +50,7 @@ public class BookContainer {
 		}
 		
 		for (int i = 0; i < container.size(); i++) {
-			add(container.get(i));
+			add(new Book(container.get(i)));
 		}
 	}
 

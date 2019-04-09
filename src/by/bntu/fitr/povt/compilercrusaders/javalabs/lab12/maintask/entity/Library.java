@@ -9,6 +9,7 @@
 
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
@@ -35,8 +36,14 @@ public class Library {
 	public Library(Library library) {
 		this.libraryId = library.libraryId;
 		this.name = library.name;
-		this.books = library.books;
-		this.accounts = library.accounts;
+		this.books = new ArrayList<>();
+		for (Book book : books) {
+			this.books.add(new Book(book));
+		}
+		this.accounts = new ArrayList<>();
+		for (LibraryAccount account: accounts) {
+			this.accounts.add(new LibraryAccount(account));
+		}
 		this.telephoneNumber = library.telephoneNumber;
 		this.address = library.address;
 	}
@@ -145,9 +152,11 @@ public class Library {
 
 	@Override
 	public String toString() {
-		return "ID: " + libraryId + 
-		"; NAME: " + name +
-		"; PHONE NUMBER:" + telephoneNumber +
-		"; ADDRESS: " + address;
+		final StringBuilder sb = new StringBuilder("ID: ");
+		sb.append(libraryId)
+		.append("; NAME: ").append(name)
+		.append("; PHONE NUMBER: ").append(telephoneNumber)
+		.append("; ADDRESS: ").append(address);
+		return sb.toString();
 	}	
 }
