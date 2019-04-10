@@ -9,12 +9,15 @@
 
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.logic;
 
+import static org.junit.Assert.fail;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.container.BookContainer;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Book;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.exception.DataException;
 
 public class BookContainerLogicTest {
 	
@@ -25,8 +28,8 @@ public class BookContainerLogicTest {
 		logic = new BookContainerLogic();
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void findById_containerNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void findById_containerNull_DataException() throws DataException {
 		
 		BookContainer container = null;
 		
@@ -34,7 +37,7 @@ public class BookContainerLogicTest {
 	}
 	
 	@Test
-	public void findById_noBookWihChosenId_null() {
+	public void findById_noBookWithChosenId_null() {
 		
 		BookContainer container = new BookContainer();
 		Book book = new Book();
@@ -43,14 +46,17 @@ public class BookContainerLogicTest {
 		
 		Book expected = null;
 
-		
-		Book actual = logic.findById(container, 3);
-		
-		Assert.assertEquals(expected, actual);
+		try {
+			Book actual = logic.findById(container, 3);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
-	public void findById_noBookWihChosenId_book() {
+	public void findById_bookWithChosenIdExists_book() {
 		
 		BookContainer container = new BookContainer();
 		Book book = new Book();
@@ -61,13 +67,17 @@ public class BookContainerLogicTest {
 		Book expected = new Book();
 		expected.setBookId(bookId);
 		
-		Book actual = logic.findById(container, bookId);
-		
-		Assert.assertEquals(expected, actual);
+		try {
+			Book actual = logic.findById(container, bookId);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void findAllByAuthor_containerNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void findAllByAuthor_containerNull_DataException() throws DataException {
 		
 		BookContainer container = null;
 		String author = "Author";
@@ -75,8 +85,8 @@ public class BookContainerLogicTest {
 		logic.findAllByAuthor(container, author);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void findAllByAuthor_authorNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void findAllByAuthor_authorNull_DataException() throws DataException {
 		
 		BookContainer container = new BookContainer();
 		String author = null;
@@ -105,9 +115,14 @@ public class BookContainerLogicTest {
 		
 		int expected = 2;
 		
-		int actual = logic.findAllByAuthor(container, author).size();
-		
-		Assert.assertEquals(expected, actual);
+		int actual;
+		try {
+			actual = logic.findAllByAuthor(container, author).size();
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -128,14 +143,17 @@ public class BookContainerLogicTest {
 		
 		int expected = 0;
 
-		
-		int actual = logic.findAllByAuthor(container, "Bob").size();
-		
-		Assert.assertEquals(expected, actual);
+		try {
+			int actual = logic.findAllByAuthor(container, "Bob").size();
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void findBorrowed_containerNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void findBorrowed_containerNull_DataException() throws DataException {
 		
 		BookContainer container = null;
 		
@@ -155,9 +173,13 @@ public class BookContainerLogicTest {
 		
 		int expected = 0;
 		
-		int actual = logic.findBorrowed(container).size();
-		
-		Assert.assertEquals(expected, actual);
+		try {
+			int actual = logic.findBorrowed(container).size();
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -175,13 +197,19 @@ public class BookContainerLogicTest {
 		Book expected = new Book();
 		expected.setBorrowed(true);
 		
-		Book actual = logic.findBorrowed(container).get(0);
+		try {
+			Book actual = logic.findBorrowed(container).get(0);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 		
-		Assert.assertEquals(expected, actual);
+
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void countAuthorBooks_containerNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void countAuthorBooks_containerNull_DataException() throws DataException {
 		
 		BookContainer container = null;
 		String author = "Author";
@@ -189,8 +217,8 @@ public class BookContainerLogicTest {
 		logic.countAuthorBooks(container, author);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void countAuthorBooks_authorNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void countAuthorBooks_authorNull_DataException() throws DataException {
 		
 		BookContainer container = new BookContainer();
 		String author = null;
@@ -219,9 +247,13 @@ public class BookContainerLogicTest {
 		
 		int expected = 2;
 		
-		int actual = logic.countAuthorBooks(container, author);
-		
-		Assert.assertEquals(expected, actual);
+		try {
+			int actual = logic.countAuthorBooks(container, author);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -242,9 +274,12 @@ public class BookContainerLogicTest {
 		
 		int expected = 0;
 
-		
-		int actual = logic.countAuthorBooks(container, author);
-		
-		Assert.assertEquals(expected, actual);
+		try {
+			int actual = logic.countAuthorBooks(container, "Bob");
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 }

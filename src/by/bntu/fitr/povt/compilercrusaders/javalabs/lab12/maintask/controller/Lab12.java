@@ -12,7 +12,6 @@ package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Date;
 
@@ -21,6 +20,8 @@ import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.container.Boo
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Book;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Library;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.LibraryAccount;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.exception.DataException;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.exception.InputException;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.logic.BookContainerLogic;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.logic.LibraryManager;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.view.Printer;
@@ -327,12 +328,14 @@ public class Lab12 {
 					break;
 				}
 				default: {
-					throw new InputMismatchException("Unknown command");
+					printer.println("Unknown command");
 				}
 				}
-			} catch (InputMismatchException e) {
+			} catch (InputException e) {
 				printer.println(e.getMessage());
-			}		
+			} catch (DataException e) {
+				printer.println(e.getMessage());
+			}				
 		}
 	}		
 }

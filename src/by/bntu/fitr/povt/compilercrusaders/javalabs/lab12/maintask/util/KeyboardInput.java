@@ -9,8 +9,10 @@
 
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.util;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.exception.DataException;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.exception.InputException;
 
 public class KeyboardInput {
 	private static final String INT_VALUE_ERROR = "value must be integer";
@@ -29,52 +31,52 @@ public class KeyboardInput {
 		return result;
 	}
 	
-	public int nextInt() {
+	public int nextInt() throws InputException {
 		if (scanner.hasNextInt()) {
 			return scanner.nextInt();
 		}
 		else {
 			scanner.next();
-			throw new InputMismatchException(INT_VALUE_ERROR);
+			throw new InputException(INT_VALUE_ERROR);
 		}
 	}
-	public int nextPositiveInt() {
+	public int nextPositiveInt() throws InputException {
 		if (scanner.hasNextInt()) {
 			int result = scanner.nextInt();
 			if (result > 0) {
 				return result;
 			}
 			else {
-				throw new InputMismatchException(POSITIVE_INT_VALUE_ERROR);
+				throw new InputException(POSITIVE_INT_VALUE_ERROR);
 			}
 		}
 		else {
 			scanner.next();
-			throw new InputMismatchException(POSITIVE_INT_VALUE_ERROR);
+			throw new InputException(POSITIVE_INT_VALUE_ERROR);
 		}
 	}
-	public double nextDouble() {
+	public double nextDouble() throws InputException {
 		if (scanner.hasNextDouble()) {
 			return scanner.nextDouble();
 		}
 		else {
 			scanner.next();
-			throw new InputMismatchException(DOUBLE_VALUE_ERROR);
+			throw new InputException(DOUBLE_VALUE_ERROR);
 		}
 	}
-	public char nextChar() {
+	public char nextChar() throws InputException {
 		if (scanner.hasNext()) {
 			return scanner.next().charAt(0);
 		}
 		else {
 			scanner.next();
-			throw new InputMismatchException(CHAR_VALUE_ERROR);
+			throw new InputException(CHAR_VALUE_ERROR);
 		}
 	}
 	
-	public int nextIntInRange(int min, int max) {
+	public int nextIntInRange(int min, int max) throws InputException, DataException {
 		if (min > max) {
-			throw new IllegalArgumentException(RANGE_ERROR);
+			throw new DataException(RANGE_ERROR);
 		}
 		if (scanner.hasNextInt()) {
 			int result = scanner.nextInt();
@@ -82,12 +84,12 @@ public class KeyboardInput {
 				return result;
 			}
 			else {
-				throw new InputMismatchException(RANGE_ERROR);
+				throw new InputException(RANGE_ERROR);
 			}
 		}
 		else {
 			scanner.next();
-			throw new InputMismatchException(INT_VALUE_ERROR);
+			throw new InputException(INT_VALUE_ERROR);
 		}
 	}
 }

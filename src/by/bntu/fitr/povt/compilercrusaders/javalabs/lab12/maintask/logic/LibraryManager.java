@@ -16,13 +16,21 @@ import java.util.List;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Book;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Library;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.LibraryAccount;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.exception.DataException;
 
 public class LibraryManager {
 	
-	public boolean lendBook(Library library, LibraryAccount account, long bookId, Calendar dueDate) {
+	public boolean lendBook(Library library, LibraryAccount account, long bookId, Calendar dueDate) throws DataException {
 		
-		if (library == null || account == null || dueDate == null) {
-			throw new IllegalArgumentException();
+		if (library == null) {
+			throw new DataException("library cannot be null");
+		}
+		if (account == null) {
+			throw new DataException("account cannot be null");
+		}
+		
+		if (dueDate == null) {
+			throw new DataException("due date cannot be null");
 		}
 		
 		boolean result = false;
@@ -44,10 +52,10 @@ public class LibraryManager {
 		return result;
 	}
 	
-	public Book findBookById(List<Book> bookList, long id) {
+	public Book findBookById(List<Book> bookList, long id) throws DataException {
 		
 		if (bookList == null) {
-			throw new IllegalArgumentException();
+			throw new DataException("book list cannot be null");
 		}
 		
 		for (Book book : bookList) {
@@ -58,10 +66,14 @@ public class LibraryManager {
 		return null;
 	}
 	
-	public boolean returnBook(Library library, LibraryAccount account, long bookId) {
+	public boolean returnBook(Library library, LibraryAccount account, long bookId) throws DataException {
 		
-		if (library == null || account == null) {
-			throw new IllegalArgumentException();
+		if (library == null) {
+			throw new DataException("library cannot be null");
+		}
+		
+		if (account == null) {
+			throw new DataException("account cannot be null");
 		}
 		
 		boolean result = false;
@@ -84,10 +96,14 @@ public class LibraryManager {
 		return result;
 	}
 	
-	public boolean registerAccount(Library library, LibraryAccount account) {
+	public boolean registerAccount(Library library, LibraryAccount account) throws DataException {
 		
-		if (library == null || account == null) {
-			throw new IllegalArgumentException();
+		if (library == null) {
+			throw new DataException("library cannot be null");
+		}
+		
+		if (account == null) {
+			throw new DataException("account cannot be null");
 		}
 		
 		boolean result = false;
@@ -100,10 +116,14 @@ public class LibraryManager {
 		return result;
 	}
 	
-	public boolean deregisterAccount(Library library, LibraryAccount account) {
+	public boolean deregisterAccount(Library library, LibraryAccount account) throws DataException {
 		
-		if (library == null || account == null) {
-			throw new IllegalArgumentException();
+		if (library == null) {
+			throw new DataException("library cannot be null");
+		}
+		
+		if (account == null) {
+			throw new DataException("account cannot be null");
 		}
 		
 		if (isRegistered(library, account)) {
@@ -116,10 +136,14 @@ public class LibraryManager {
 		
 	}
 	
-	public boolean isRegistered(Library library, LibraryAccount account) {
+	public boolean isRegistered(Library library, LibraryAccount account) throws DataException {
 		
-		if (library == null || account == null) {
-			throw new IllegalArgumentException();
+		if (library == null) {
+			throw new DataException("library cannot be null");
+		}
+		
+		if (account == null) {
+			throw new DataException("account cannot be null");
 		}
 		
 		List<LibraryAccount> accountList = library.getAccounts();
@@ -127,10 +151,10 @@ public class LibraryManager {
 		return accountList.contains(account);
 	}
 	
-	public List<Book> findLendedBooks(Library library) {
+	public List<Book> findLendedBooks(Library library) throws DataException {
 		
 		if (library == null) {
-			throw new IllegalArgumentException();
+			throw new DataException("library cannot be null");
 		}
 		
 		List<Book> lendedBooks = new ArrayList<>();
@@ -145,10 +169,10 @@ public class LibraryManager {
 		return lendedBooks;
 	}
 	
-	public Library findLibraryById(List<Library> libraries, long id) {
+	public Library findLibraryById(List<Library> libraries, long id) throws DataException {
 		
 		if (libraries == null) {
-			throw new IllegalArgumentException();
+			throw new DataException("libraries cannot be null");
 		}
 		
 		Library chosenLibrary = null;
@@ -162,10 +186,10 @@ public class LibraryManager {
 		return chosenLibrary;
 	}
 	
-	public LibraryAccount findAccountById(List<LibraryAccount> accounts, long id) {
+	public LibraryAccount findAccountById(List<LibraryAccount> accounts, long id) throws DataException {
 		
 		if (accounts == null) {
-			throw new IllegalArgumentException();
+			throw new DataException("accounts cannot be null");
 		}
 		
 		LibraryAccount chosenAccount = null;
@@ -179,10 +203,10 @@ public class LibraryManager {
 		return chosenAccount;
 	}
 	
-	public long[][] findLibrariesBooksIds(List<Library> libraries) {
+	public long[][] findLibrariesBooksIds(List<Library> libraries) throws DataException {
 		
 		if (libraries == null) {
-			throw new IllegalArgumentException();
+			throw new DataException("libraries cannot be null");
 		}
 		
 		long[][] result = new long[libraries.size()][];

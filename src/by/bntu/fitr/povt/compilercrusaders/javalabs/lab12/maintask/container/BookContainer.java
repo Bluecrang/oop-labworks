@@ -34,23 +34,19 @@ public class BookContainer {
 	
 	public BookContainer(Book... books) {
 		
-		if (books == null) {
-			throw new IllegalArgumentException("books array can not be null");
-		}
-		
-		for (Book book : books) {
-			add(book);
+		if (books != null) {
+			for (Book book : books) {
+				add(book);
+			}
 		}
 	}
 	
 	public BookContainer(BookContainer container) {
 		
-		if (container == null) {
-			throw new IllegalArgumentException("container can not be null");
-		}
-		
-		for (int i = 0; i < container.size(); i++) {
-			add(new Book(container.get(i)));
+		if (container != null) {
+			for (int i = 0; i < container.size(); i++) {
+				add(new Book(container.get(i)));
+			}
 		}
 	}
 

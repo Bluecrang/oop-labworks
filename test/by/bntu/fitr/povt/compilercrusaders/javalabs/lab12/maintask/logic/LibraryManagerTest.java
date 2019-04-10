@@ -9,6 +9,8 @@
 
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.logic;
 
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -20,6 +22,8 @@ import org.junit.Test;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Book;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Library;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.LibraryAccount;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.exception.DataException;
+
 import org.junit.Assert;
 
 public class LibraryManagerTest {
@@ -31,39 +35,6 @@ public class LibraryManagerTest {
 		manager = new LibraryManager();
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void lendBook_libraryNull_IllegalArgumentException() {
-		
-		Library library = null;
-		LibraryAccount account = new LibraryAccount(1, "name", new ArrayList<Book>(), "address", true);
-		long bookId = 5;
-		Calendar dueDate = new GregorianCalendar();
-		
-		manager.lendBook(library, account, bookId, dueDate);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void lendBook_libraryAccountNull_IllegalArgumentException() {
-		
-		Library library = new Library();
-		LibraryAccount account = null;
-		long bookId = 5;
-		Calendar dueDate = new GregorianCalendar();
-		
-		manager.lendBook(library, account, bookId, dueDate);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void lendBook_dueDateNull_IllegalArgumentException() {
-		
-		Library library = new Library();
-		LibraryAccount account = new LibraryAccount(1, "name", new ArrayList<Book>(), "address", true);
-		long bookId = 5;
-		Calendar dueDate = null;
-		
-		manager.lendBook(library, account, bookId, dueDate);
-	}
-	
 	@Test
 	public void lendBook_legalInput_true() {
 		
@@ -79,9 +50,47 @@ public class LibraryManagerTest {
 		library.setBooks(books);
 		Calendar dueDate = new GregorianCalendar();
 		
-		boolean condition = manager.lendBook(library, account, bookId, dueDate);
+		try {
+			boolean condition = manager.lendBook(library, account, bookId, dueDate);
+			
+			Assert.assertTrue(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 		
-		Assert.assertTrue(condition);
+	}
+	
+	@Test(expected = DataException.class)
+	public void lendBook_libraryNull_DataException() throws DataException {
+		
+		Library library = null;
+		LibraryAccount account = new LibraryAccount(1, "name", new ArrayList<Book>(), "address", true);
+		long bookId = 5;
+		Calendar dueDate = new GregorianCalendar();
+		
+		manager.lendBook(library, account, bookId, dueDate);
+	}
+	
+	@Test(expected = DataException.class)
+	public void lendBook_libraryAccountNull_DataException() throws DataException {
+		
+		Library library = new Library();
+		LibraryAccount account = null;
+		long bookId = 5;
+		Calendar dueDate = new GregorianCalendar();
+		
+		manager.lendBook(library, account, bookId, dueDate);
+	}
+	
+	@Test(expected = DataException.class)
+	public void lendBook_dueDateNull_DataException() throws DataException {
+		
+		Library library = new Library();
+		LibraryAccount account = new LibraryAccount(1, "name", new ArrayList<Book>(), "address", true);
+		long bookId = 5;
+		Calendar dueDate = null;
+		
+		manager.lendBook(library, account, bookId, dueDate);
 	}
 	
 	@Test
@@ -98,9 +107,13 @@ public class LibraryManagerTest {
 		library.setBooks(books);
 		Calendar dueDate = new GregorianCalendar();
 		
-		boolean condition = manager.lendBook(library, account, bookId, dueDate);
-		
-		Assert.assertFalse(condition);
+		try {
+			boolean condition = manager.lendBook(library, account, bookId, dueDate);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -118,9 +131,13 @@ public class LibraryManagerTest {
 		library.setAccounts(accounts);
 		Calendar dueDate = new GregorianCalendar();
 		
-		boolean condition = manager.lendBook(library, account, bookId, dueDate);
-		
-		Assert.assertFalse(condition);
+		try {
+			boolean condition = manager.lendBook(library, account, bookId, dueDate);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -136,18 +153,14 @@ public class LibraryManagerTest {
 		library.setAccounts(accounts);
 		Calendar dueDate = new GregorianCalendar();
 		
-		boolean condition = manager.lendBook(library, account, bookId, dueDate);
-		
-		Assert.assertFalse(condition);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void findBookById_bookListNull_IllegalArgumentException() {
-		
-		List<Book> bookList = null;
-		
-		manager.findBookById(bookList, 1);
-		
+		try {
+			boolean condition = manager.lendBook(library, account, bookId, dueDate);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
+
 	}
 	
 	@Test
@@ -157,9 +170,21 @@ public class LibraryManagerTest {
 		Book expected = new Book(1, "title", "author", false, null);
 		bookList.add(expected);
 		
-		Book actual = manager.findBookById(bookList, 1);
+		try {
+			Book actual = manager.findBookById(bookList, 1);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
+	}
+	
+	@Test(expected = DataException.class)
+	public void findBookById_bookListNull_DataException() throws DataException {
 		
-		Assert.assertEquals(expected, actual);
+		List<Book> bookList = null;
+		
+		manager.findBookById(bookList, 1);
 	}
 	
 	@Test
@@ -169,14 +194,18 @@ public class LibraryManagerTest {
 		bookList.add(new Book(1, "title1", "author1", false, null));
 		bookList.add(new Book(2, "title2", "author2", false, null));
 		Book expected = null;
-		
-		Book actual = manager.findBookById(bookList, 15);
-		
-		Assert.assertEquals(expected, actual);
+
+		try {
+			Book actual = manager.findBookById(bookList, 15);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void returnBook_libraryNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void returnBook_libraryNull_DataException() throws DataException {
 		
 		Library library = null;
 		LibraryAccount account = new LibraryAccount(1, "name", new ArrayList<Book>(), "address", true);
@@ -185,8 +214,8 @@ public class LibraryManagerTest {
 		manager.returnBook(library, account, bookId);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void returnBook_libraryAccountNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void returnBook_libraryAccountNull_DataException() throws DataException {
 		
 		Library library = new Library();
 		LibraryAccount account = null;
@@ -212,10 +241,14 @@ public class LibraryManagerTest {
 		
 		library.setAccounts(accounts);
 		library.setBooks(books);
-		
-		boolean condition = manager.returnBook(library, account, bookId);
-		
-		Assert.assertTrue(condition);
+
+		try {
+			boolean condition = manager.returnBook(library, account, bookId);
+			
+			Assert.assertTrue(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -234,10 +267,14 @@ public class LibraryManagerTest {
 		
 		library.setAccounts(accounts);
 		library.setBooks(books);
-		
-		boolean condition = manager.returnBook(library, account, bookId);
-		
-		Assert.assertFalse(condition);
+
+		try {
+			boolean condition = manager.returnBook(library, account, bookId);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -256,10 +293,14 @@ public class LibraryManagerTest {
 		
 		library.setAccounts(accounts);
 		library.setBooks(books);
-		
-		boolean condition = manager.returnBook(library, account, bookId);
-		
-		Assert.assertFalse(condition);
+
+		try {
+			boolean condition = manager.returnBook(library, account, bookId);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -278,10 +319,14 @@ public class LibraryManagerTest {
 		
 		library.setAccounts(accounts);
 		library.setBooks(books);
-		
-		boolean condition = manager.returnBook(library, account, bookId);
-		
-		Assert.assertFalse(condition);
+
+		try {
+			boolean condition = manager.returnBook(library, account, bookId);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -303,9 +348,13 @@ public class LibraryManagerTest {
 		library.setAccounts(accounts);
 		library.setBooks(books);
 		
-		boolean condition = manager.returnBook(library, account, bookId);
-		
-		Assert.assertFalse(condition);
+		try {
+			boolean condition = manager.returnBook(library, account, bookId);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -325,10 +374,14 @@ public class LibraryManagerTest {
 		
 		library.setAccounts(accounts);
 		library.setBooks(books);
-		
-		boolean condition = manager.returnBook(library, account, bookId);
-		
-		Assert.assertFalse(condition);
+
+		try {
+			boolean condition = manager.returnBook(library, account, bookId);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -341,9 +394,13 @@ public class LibraryManagerTest {
 		
 		library.setAccounts(accounts);
 		
-		boolean condition = manager.registerAccount(library, account);
-		
-		Assert.assertTrue(condition);
+		try {
+			boolean condition = manager.registerAccount(library, account);
+			
+			Assert.assertTrue(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -356,14 +413,18 @@ public class LibraryManagerTest {
 		accounts.add(account);
 		
 		library.setAccounts(accounts);
-		
-		boolean condition = manager.registerAccount(library, account);
-		
-		Assert.assertFalse(condition);
+
+		try {
+			boolean condition = manager.registerAccount(library, account);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void registerAccount_libraryNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void registerAccount_libraryNull_DataException() throws DataException {
 		
 		Library library = null;
 		
@@ -372,8 +433,8 @@ public class LibraryManagerTest {
 		manager.registerAccount(library, account);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void registerAccount_accountNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void registerAccount_accountNull_DataException() throws DataException {
 		
 		Library library = new Library();
 		List<LibraryAccount> accounts = new ArrayList<>();
@@ -384,8 +445,8 @@ public class LibraryManagerTest {
 		manager.registerAccount(library, account);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void deregisterAccount_libraryNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void deregisterAccount_libraryNull_DataException() throws DataException {
 		
 		Library library = null;
 		LibraryAccount account = new LibraryAccount(1, "name", new ArrayList<Book>(), "address", true);
@@ -393,8 +454,8 @@ public class LibraryManagerTest {
 		manager.deregisterAccount(library, account);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void deregisterAccount_accountNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void deregisterAccount_accountNull_DataException() throws DataException {
 		
 		Library library = new Library();
 		LibraryAccount account = null;
@@ -412,10 +473,14 @@ public class LibraryManagerTest {
 		accounts.add(account);
 		
 		library.setAccounts(accounts);
-		
-		boolean condition = manager.deregisterAccount(library, account);
-		
-		Assert.assertTrue(condition);
+	
+		try {
+			boolean condition = manager.deregisterAccount(library, account);
+
+			Assert.assertTrue(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -427,14 +492,18 @@ public class LibraryManagerTest {
 		LibraryAccount account = new LibraryAccount(1, "name", new ArrayList<Book>(), "address", true);
 		
 		library.setAccounts(accounts);
-		
-		boolean condition = manager.deregisterAccount(library, account);
-		
-		Assert.assertFalse(condition);
+
+		try {
+			boolean condition = manager.deregisterAccount(library, account);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void isRegistered_libraryNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void isRegistered_libraryNull_DataException() throws DataException {
 		
 		Library library = null;
 		LibraryAccount account = new LibraryAccount(1, "name", new ArrayList<Book>(), "address", true);
@@ -442,8 +511,8 @@ public class LibraryManagerTest {
 		manager.isRegistered(library, account);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void isRegistered_accountNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void isRegistered_accountNull_DataException() throws DataException {
 		
 		Library library = new Library();
 		LibraryAccount account = null;
@@ -460,10 +529,14 @@ public class LibraryManagerTest {
 		LibraryAccount account = new LibraryAccount(1, "name", new ArrayList<Book>(), "address", true);
 		accounts.add(account);
 		library.setAccounts(accounts);
-		
-		boolean condition = manager.isRegistered(library, account);
-		
-		Assert.assertTrue(condition);
+
+		try {
+			boolean condition = manager.isRegistered(library, account);
+			
+			Assert.assertTrue(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -475,14 +548,18 @@ public class LibraryManagerTest {
 		LibraryAccount account = new LibraryAccount(1, "name", new ArrayList<Book>(), "address", true);
 
 		library.setAccounts(accounts);
-		
-		boolean condition = manager.isRegistered(library, account);
-		
-		Assert.assertFalse(condition);
+
+		try {
+			boolean condition = manager.isRegistered(library, account);
+			
+			Assert.assertFalse(condition);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void findLendedBooks_libraryNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void findLendedBooks_libraryNull_DataException() throws DataException {
 		
 		Library library = null;
 		
@@ -499,10 +576,14 @@ public class LibraryManagerTest {
 		library.setBooks(books);
 		List<Book> expected = new ArrayList<>();
 		expected.add(book);
-		
-		List<Book> actual = manager.findLendedBooks(library);
-		
-		Assert.assertEquals(expected, actual);
+
+		try {
+			List<Book> actual = manager.findLendedBooks(library);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -514,9 +595,13 @@ public class LibraryManagerTest {
 		library.setBooks(books);
 		List<Book> expected = new ArrayList<>();
 		
-		List<Book> actual = manager.findLendedBooks(library);
-		
-		Assert.assertEquals(expected, actual);
+		try {
+			List<Book> actual = manager.findLendedBooks(library);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -530,10 +615,14 @@ public class LibraryManagerTest {
 		
 		Library expected = new Library();
 		expected.setLibraryId(libraryId);
-		
-		Library actual = manager.findLibraryById(libraries, libraryId);
-		
-		Assert.assertEquals(expected, actual);
+
+		try {
+			Library actual = manager.findLibraryById(libraries, libraryId);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -545,14 +634,18 @@ public class LibraryManagerTest {
 		libraries.add(library);
 		
 		Library expected = null;
-		
-		Library actual = manager.findLibraryById(libraries, 33);
-		
-		Assert.assertEquals(expected, actual);
+
+		try {
+			Library actual = manager.findLibraryById(libraries, 33);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void findLibraryById_librariesNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void findLibraryById_librariesNull_DataException() throws DataException {
 		
 		List<Library> libraries = null;
 		long libraryId = 1;
@@ -571,10 +664,14 @@ public class LibraryManagerTest {
 		
 		LibraryAccount expected = new LibraryAccount();
 		expected.setLibraryAccountId(accountId);
-		
-		LibraryAccount actual = manager.findAccountById(accounts, accountId);
-		
-		Assert.assertEquals(expected, actual);
+
+		try {
+			LibraryAccount actual = manager.findAccountById(accounts, accountId);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
 	@Test
@@ -587,14 +684,18 @@ public class LibraryManagerTest {
 		accounts.add(account);
 		
 		LibraryAccount expected = null;
-		
-		LibraryAccount actual = manager.findAccountById(accounts, 4);
-		
-		Assert.assertEquals(expected, actual);
+
+		try {
+			LibraryAccount actual = manager.findAccountById(accounts, 4);
+			
+			Assert.assertEquals(expected, actual);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void findAccountById_accountsNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void findAccountById_accountsNull_dataException() throws DataException {
 		
 		List<LibraryAccount> accounts = null;
 		long accountId = 1;
@@ -602,8 +703,8 @@ public class LibraryManagerTest {
 		manager.findAccountById(accounts, accountId);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void findLibrariesBooksIds_librariesNull_IllegalArgumentException() {
+	@Test(expected = DataException.class)
+	public void findLibrariesBooksIds_librariesNull_DataException() throws DataException {
 		
 		List<Library> libraries = null;
 		
@@ -635,9 +736,13 @@ public class LibraryManagerTest {
 		libraries.add(library2);
 		
 		long[][] expecteds = {{1, 2}, {3, 4}};
-		
-		long[][] actuals = manager.findLibrariesBooksIds(libraries);
-		
-		Assert.assertArrayEquals(expecteds, actuals);
+
+		try {
+			long[][] actuals = manager.findLibrariesBooksIds(libraries);
+			
+			Assert.assertArrayEquals(expecteds, actuals);
+		} catch (DataException e) {
+			fail("unexpected DataException");
+		}
 	}
 }

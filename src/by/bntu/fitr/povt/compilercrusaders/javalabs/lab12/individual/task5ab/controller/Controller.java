@@ -14,6 +14,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
 
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.individual.task5ab.exception.IndexException;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.individual.task5ab.logic.MatrixLogic;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.individual.task5ab.util.KeyboardInput;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.view.Printer;
@@ -113,8 +114,14 @@ public class Controller {
 			printer.println("\n");
 			List<Integer> orderedRowsIndexes = logic.findOrderedRowsIndexes(matrix);
 			if (!orderedRowsIndexes.isEmpty()) {
-				double max = logic.findMaxInRows(matrix, orderedRowsIndexes);
-				printer.println("max element in ordered rows: " + max);
+				double max;
+				try {
+					max = logic.findMaxInRows(matrix, orderedRowsIndexes);
+					printer.println("max element in ordered rows: " + max);
+				} catch (IndexException e) {
+					printer.println("wrong index");
+				}
+
 			} else {
 				printer.println("There are no ordered rows");
 			}

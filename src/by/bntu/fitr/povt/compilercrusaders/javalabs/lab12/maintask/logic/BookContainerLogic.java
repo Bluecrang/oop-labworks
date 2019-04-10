@@ -11,13 +11,14 @@ package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.logic;
 
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.container.BookContainer;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Book;
+import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.exception.DataException;
 
 public class BookContainerLogic {
 	
-	public Book findById(BookContainer container, long id) {
+	public Book findById(BookContainer container, long id) throws DataException {
 		
 		if (container == null) {
-			throw new IllegalArgumentException();
+			throw new DataException("container cannot be null");
 		}
 		
 		Book result = null;
@@ -28,14 +29,17 @@ public class BookContainerLogic {
 				break;
 			}
 		}
-		
 		return result;
 	}
 	
-	public BookContainer findAllByAuthor(BookContainer container, String author) {
+	public BookContainer findAllByAuthor(BookContainer container, String author) throws DataException {
 		
-		if (container == null || author == null) {
-			throw new IllegalArgumentException();
+		if (container == null) {
+			throw new DataException("container cannot be null");
+		}
+		
+		if (author == null) {
+			throw new DataException("author cannot be null");
 		}
 		
 		BookContainer result = new BookContainer();
@@ -46,14 +50,13 @@ public class BookContainerLogic {
 				result.add(currentBook);
 			}
 		}
-		
 		return result;
 	}
 	
-	public BookContainer findBorrowed(BookContainer container) {
+	public BookContainer findBorrowed(BookContainer container) throws DataException {
 		
 		if (container == null) {
-			throw new IllegalArgumentException();
+			throw new DataException("container cannot be null");
 		}
 		
 		BookContainer result = new BookContainer();
@@ -64,14 +67,17 @@ public class BookContainerLogic {
 				result.add(currentBook);
 			}
 		}
-		
 		return result;
 	}
 	
-	public int countAuthorBooks(BookContainer container, String author) {
+	public int countAuthorBooks(BookContainer container, String author) throws DataException {
 		
-		if (container == null || author == null) {
-			throw new IllegalArgumentException();
+		if (container == null) {
+			throw new DataException("container cannot be null");
+		}
+		
+		if (author == null) {
+			throw new DataException("author cannot be null");
 		}
 		
 		int result = 0;
@@ -80,10 +86,7 @@ public class BookContainerLogic {
 			if (currentBook.getAuthor().equals(author)) {
 				result++;
 			}
-		}
-		
+		}	
 		return result;
 	}
-	
-	
 }

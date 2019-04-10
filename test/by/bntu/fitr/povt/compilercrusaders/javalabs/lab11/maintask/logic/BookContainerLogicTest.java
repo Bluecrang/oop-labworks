@@ -232,10 +232,11 @@ public class BookContainerLogicTest {
 		Book book1 = new Book();
 		Book book2 = new Book();
 		
-		String author = "Alice";
+		String author1 = "Alice";
+		String author2 = "Bob";
 		
-		book1.setAuthor(author);
-		book2.setAuthor(author);
+		book1.setAuthor(author1);
+		book2.setAuthor(author2);
 		
 		container.add(book1);
 		container.add(book2);
@@ -243,7 +244,7 @@ public class BookContainerLogicTest {
 		int expected = 0;
 
 		
-		int actual = logic.countAuthorBooks(container, author);
+		int actual = logic.countAuthorBooks(container, "pavel");
 		
 		Assert.assertEquals(expected, actual);
 	}
