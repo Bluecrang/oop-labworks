@@ -10,8 +10,12 @@
 package by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.logic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Book;
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Library;
@@ -19,6 +23,8 @@ import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.entity.Librar
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.exception.DataException;
 
 public class LibraryManager {
+	
+	private static final Logger logger = LogManager.getLogger();
 	
 	public boolean lendBook(Library library, LibraryAccount account, long bookId, Calendar dueDate) throws DataException {
 		
@@ -34,9 +40,8 @@ public class LibraryManager {
 		}
 		
 		boolean result = false;
-		
 		if (isRegistered(library, account)) {
-			
+			logger.debug("lendBook: account=" + account + " exists in library=" + library);
 			List<Book> borrowedBooks = account.getBorrowedBooks();
 			List<Book> libraryBooks = library.getBooks();
 			Book book = findBookById(libraryBooks, bookId);
@@ -45,6 +50,7 @@ public class LibraryManager {
 				book.setDueDate(dueDate);
 				book.setBorrowed(true);
 				borrowedBooks.add(book);
+				logger.debug("lendBook: book=" + book + " lended");
 				result = true;
 			}
 		}
@@ -79,17 +85,17 @@ public class LibraryManager {
 		boolean result = false;
 		
 		if (isRegistered(library, account)) {
-			
+			logger.debug("returnBook: account=" + account + " exists in library=" + library);
 			List<Book> libraryBooks = library.getBooks();
 			Book lendedBook = findBookById(libraryBooks, bookId);
 			List<Book> accountBooks = account.getBorrowedBooks();
 			Book borrowedBook = findBookById(accountBooks, bookId);
 					
 			if (borrowedBook != null && lendedBook != null && borrowedBook == lendedBook && borrowedBook.isBorrowed()) {
-				
 				accountBooks.remove(borrowedBook);
 				borrowedBook.setBorrowed(false);
 				borrowedBook.setDueDate(null);
+				logger.debug("returnBook: book=" + borrowedBook + " book successfully returned");
 				result = true;
 			}			
 		}
@@ -110,6 +116,7 @@ public class LibraryManager {
 		if (!isRegistered(library, account)) {
 			List<LibraryAccount> accountList = library.getAccounts();
 			accountList.add(account);
+			logger.debug("registerAccount: account=" + account + " registered in library=" + library);
 			result = true;
 		}
 		
@@ -127,6 +134,7 @@ public class LibraryManager {
 		}
 		
 		if (isRegistered(library, account)) {
+			logger.debug("deregisterAccount: account=" + account + " is registered");
 			List<LibraryAccount> accountList = library.getAccounts();
 			accountList.remove(account);
 			return true;
@@ -147,7 +155,6 @@ public class LibraryManager {
 		}
 		
 		List<LibraryAccount> accountList = library.getAccounts();
-		
 		return accountList.contains(account);
 	}
 	
@@ -162,6 +169,7 @@ public class LibraryManager {
 		
 		for (Book book : books) {
 			if (book.isBorrowed()) {
+				logger.debug("findLendedBooks: book=" + book + " is added to lendedBooks list");
 				lendedBooks.add(book);
 			}
 		}
@@ -217,6 +225,7 @@ public class LibraryManager {
 			for (int j = 0; j < books.size(); j++) {
 				booksIds[j] = books.get(j).getBookId();
 			}
+			logger.debug("findLibrariesBooksIds: " + Arrays.toString(booksIds) + " added to the result at index=" + i);
 			result[i] = booksIds;
 		}
 		return result;

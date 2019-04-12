@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Date;
 
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.util.KeyboardInput;
@@ -27,6 +31,8 @@ import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.maintask.logic.Library
 import by.bntu.fitr.povt.compilercrusaders.javalabs.lab12.view.Printer;
 
 public class Lab12 {
+	
+	private static final Logger logger = LogManager.getLogger();
 	
 	public static void main(String[] args) {
 		
@@ -75,6 +81,7 @@ public class Lab12 {
 		
 		boolean active = true;
 		while (active) {
+			logger.debug("Entered menu");
 			printer.println("MENU");
 			printer.println("1 - list libraries");
 			printer.println("2 - list libraries accounts");
@@ -94,12 +101,14 @@ public class Lab12 {
 				int choice = input.nextIntInRange(1, 13);
 				choiceStart: switch (choice) {
 				case 1: {
+					logger.debug("Option 1 chosen");
 					for (Library library : libraries) {
 						printer.println(library.toString());
 					}
 					break;
 				}
 				case 2: {
+					logger.debug("Option 2 chosen");
 					for (Library library : libraries) {
 						printer.println("Library: " + library.getName());
 						for (LibraryAccount account : library.getAccounts()) {
@@ -114,6 +123,7 @@ public class Lab12 {
 					break;
 				}
 				case 3: {
+					logger.debug("Option 3 chosen");
 					for (Library library : libraries) {
 						printer.println("Library: " + library.getName());
 						for (Book book : library.getBooks()) {
@@ -123,6 +133,7 @@ public class Lab12 {
 					break;
 				}
 				case 4: {
+					logger.debug("Option 4 chosen");
 						BookContainer borrowedBooks = containerLogic.findBorrowed(bookContainer);
 						for (int i = 0; i < borrowedBooks.size(); i++) {
 							printer.println(borrowedBooks.get(i).toString());
@@ -131,13 +142,14 @@ public class Lab12 {
 						break;
 					}
 				case 5: {
+					logger.debug("Option 5 chosen");
 					for (int i = 0; i < bookContainer.size(); i++) {
 						printer.println(bookContainer.get(i).toString());
 					}
 					break;
 				}
 				case 6: {
-					
+					logger.debug("Option 6 chosen");
 					printer.println("Enter book id:");
 					long id = input.nextPositiveInt();
 					
@@ -159,7 +171,7 @@ public class Lab12 {
 					break;
 				}
 				case 7: {
-					
+					logger.debug("Option 7 chosen");
 					printer.println("Enter book id:");
 					long bookId = input.nextPositiveInt();
 					
@@ -193,7 +205,7 @@ public class Lab12 {
 					break;
 				}
 				case 8: {
-					
+					logger.debug("Option 8 chosen");
 					printer.println("Enter library id:");
 					long libraryId = input.nextPositiveInt();
 
@@ -249,7 +261,7 @@ public class Lab12 {
 					break;
 				}
 				case 9: {
-					
+					logger.debug("Option 9 chosen");
 					printer.println("Enter library id:");
 					long libraryId = input.nextPositiveInt();
 
@@ -303,6 +315,7 @@ public class Lab12 {
 					break;
 				}
 				case 10: {
+					logger.debug("Option 10 chosen");
 					printer.println("Enter author: ");
 					String author = input.nextLine();
 					int books = containerLogic.countAuthorBooks(bookContainer, author);
@@ -310,6 +323,7 @@ public class Lab12 {
 					break;
 				}
 				case 11: {
+					logger.debug("Option 11 chosen");
 					printer.println("Enter author: ");
 					String author = input.nextLine();
 					BookContainer container = containerLogic.findAllByAuthor(bookContainer, author);
@@ -319,11 +333,13 @@ public class Lab12 {
 					break;
 				}
 				case 12: {
+					logger.debug("Option 12 chosen");
 					printer.println("Libraries books ids: ");
 					printer.println(Arrays.deepToString(manager.findLibrariesBooksIds(libraries)));
 					break;
 				}
 				case 13: {
+					logger.debug("Option 13 chosen");
 					active = false;
 					break;
 				}
@@ -332,8 +348,10 @@ public class Lab12 {
 				}
 				}
 			} catch (InputException e) {
+				logger.warn("InputException has occured", e);
 				printer.println(e.getMessage());
 			} catch (DataException e) {
+				logger.warn("DataException has occured", e);
 				printer.println(e.getMessage());
 			}				
 		}
